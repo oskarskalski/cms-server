@@ -1,4 +1,4 @@
-package com.oskarskalski.cms;
+package com.oskarskalski.cms.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

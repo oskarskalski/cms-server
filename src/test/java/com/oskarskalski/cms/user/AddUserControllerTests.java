@@ -1,4 +1,4 @@
-package com.oskarskalski.cms;
+package com.oskarskalski.cms.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oskarskalski.cms.dto.UserDto;
