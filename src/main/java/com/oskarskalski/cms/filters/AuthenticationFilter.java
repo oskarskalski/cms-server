@@ -1,12 +1,11 @@
 package com.oskarskalski.cms.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oskarskalski.cms.exception.AccessDeniedException;
+import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.model.UsernameAndPasswordAuthenticationRequest;
-import com.oskarskalski.cms.repo.UserRepo;
 import com.oskarskalski.cms.service.UserAuthenticationService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,8 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
@@ -51,7 +48,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 Authentication authenticate = authenticationManager.authenticate(authentication);
                 return authenticate;
             }else{
-                throw new NullPointerException();
+                System.out.println("test");
+                throw new AccessDeniedException();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -66,15 +64,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             Authentication authResult) throws IOException, ServletException {
 
 
-        String token = Jwts.builder()
-                .setSubject(authResult.getName())
-                .claim("authorities", authResult.getAuthorities())
-                .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, "secret key".getBytes())
-                .compact();
-
-        System.out.println(authResult.getName());
-        System.out.println(token);
+        JwtConfiguration jwtConfiguration = new JwtConfiguration();
+        String token = jwtConfiguration.build(authResult);
         response.addHeader("Authorization", "Bearer " + token);
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Date;
 
+import static com.oskarskalski.cms.TestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -23,10 +24,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @AutoConfigureMockMvc
 @Tag("addUser")
 public class AddUserControllerTests {
-    private final String testFirstName = "testFirstName";
-    private final String testLastName = "testLastName";
-    private final String testEmail = "test@email.email" + new Date();
-    private final String testPassword = "testPassword";
     @Autowired
     private MockMvc mvc;
 
