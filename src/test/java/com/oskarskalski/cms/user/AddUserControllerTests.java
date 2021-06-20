@@ -1,10 +1,8 @@
 package com.oskarskalski.cms.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oskarskalski.cms.dto.UserDto;
 import com.oskarskalski.cms.model.User;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.Date;
 
 import static com.oskarskalski.cms.TestData.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,10 +28,10 @@ public class AddUserControllerTests {
     public void givenAreAllRequiredFieldsAsParams__ExceptedHttpStatus__Returned200HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName);
-        user.setLastName(testLastName);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setFirstName(TEST_FIRST_NAME);
+        user.setLastName(TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -56,9 +52,9 @@ public class AddUserControllerTests {
             throws Exception {
         User user = new User();
         user.setFirstName(null);
-        user.setLastName(testLastName);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setLastName(TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -78,10 +74,10 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithoutLastNameAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName);
+        user.setFirstName(TEST_FIRST_NAME);
         user.setLastName(null);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -101,9 +97,9 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithoutPasswordAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName);
-        user.setLastName(testLastName);
-        user.setEmail(testEmail);
+        user.setFirstName(TEST_FIRST_NAME);
+        user.setLastName(TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
         user.setPassword(null);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -125,10 +121,10 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithTooShortFirstNameAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName.substring(0, 1));
-        user.setLastName(testLastName);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setFirstName(TEST_FIRST_NAME.substring(0, 1));
+        user.setLastName(TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -148,10 +144,10 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithTooShortLastNameAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName);
-        user.setLastName(testLastName.substring(0, 1));
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setFirstName(TEST_FIRST_NAME);
+        user.setLastName(TEST_LAST_NAME.substring(0, 1));
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -171,10 +167,10 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithTooShortPasswordAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName);
-        user.setLastName(testLastName);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword.substring(0, 4));
+        user.setFirstName(TEST_FIRST_NAME);
+        user.setLastName(TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD.substring(0, 4));
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -194,10 +190,10 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithTooLongFirstNameAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName + testFirstName + testFirstName + testFirstName);
-        user.setLastName(testLastName);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setFirstName(TEST_FIRST_NAME + TEST_FIRST_NAME + TEST_FIRST_NAME + TEST_FIRST_NAME);
+        user.setLastName(TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);
@@ -217,10 +213,10 @@ public class AddUserControllerTests {
     public void givenAllRequiredFieldsWithTooLongLastNameAsParams__ExceptedHttpStatus__Returned400HttpStatus()
             throws Exception {
         User user = new User();
-        user.setFirstName(testFirstName);
-        user.setLastName(testLastName + testLastName + testLastName + testLastName + testLastName);
-        user.setEmail(testEmail);
-        user.setPassword(testPassword);
+        user.setFirstName(TEST_FIRST_NAME);
+        user.setLastName(TEST_LAST_NAME + TEST_LAST_NAME + TEST_LAST_NAME + TEST_LAST_NAME + TEST_LAST_NAME);
+        user.setEmail(TEST_EMAIL);
+        user.setPassword(TEST_PASSWORD);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String createJsonWithData = objectMapper.writeValueAsString(user);

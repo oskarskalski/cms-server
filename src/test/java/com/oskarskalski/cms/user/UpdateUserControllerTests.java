@@ -1,11 +1,8 @@
 package com.oskarskalski.cms.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oskarskalski.cms.dto.UserDto;
 import com.oskarskalski.cms.dto.UserRequest;
-import com.oskarskalski.cms.model.User;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +47,7 @@ public class UpdateUserControllerTests {
         user.setFirstName("test123");
         String jsonWithNullValues = objectMapper.writeValueAsString(user);
         MvcResult mvcResult = mvc.perform(put("/api/users/update")
-                .header("Authorization", "Bearer " + testJWT)
+                .header("Authorization", "Bearer " + TEST_JWT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonWithNullValues))
                 .andReturn();

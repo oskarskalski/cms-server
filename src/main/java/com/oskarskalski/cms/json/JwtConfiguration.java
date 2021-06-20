@@ -9,8 +9,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 
-import javax.persistence.Access;
-
 
 public class JwtConfiguration {
     public DecodedJWT parse(String token) {
@@ -35,7 +33,7 @@ public class JwtConfiguration {
             System.out.println(authResult.getName());
             String token = JWT.create()
                     .withIssuer("auth0")
-                    .withSubject(authResult.getName())
+                    .withClaim("id", authResult.getName())
                     .withClaim("authorities", authResult.getAuthorities().toString())
                     .sign(algorithm);
             System.out.println(token);

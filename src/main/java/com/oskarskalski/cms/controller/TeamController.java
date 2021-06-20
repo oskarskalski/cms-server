@@ -17,17 +17,34 @@ public class TeamController {
     }
 
     @PostMapping("add")
-    public void test(@RequestBody Team team, @RequestHeader("Authorization")String header){
-        teamService.createTeam(team, header);
+    public void test(@RequestBody TeamDto teamDto,
+                     @RequestHeader(value = "Authorization", defaultValue = "") String header) {
+        teamService.createTeam(teamDto, header);
     }
 
     @GetMapping("{id}")
-    public TeamDto getTeamById(@PathVariable String id, @RequestHeader("Authorization")String header){
+    public TeamDto getTeamById(@PathVariable String id,
+                               @RequestHeader(value = "Authorization", defaultValue = "") String header) {
         return teamService.getTeamById(id);
     }
 
-    @PutMapping("generateCode")
-    public void generateTeamCode(String id, @RequestHeader("Authorization")String header){
-        teamService.generateCodeForJoiningTeam(id, header);
+    @PutMapping("updateCode/{id}")
+    public void updateTeamCode(@PathVariable String id,
+                               @RequestHeader(value = "Authorization", defaultValue = "") String header) {
+        teamService.updateTeamCode(id, header);
+    }
+
+    @PutMapping("update/{id}")
+    public void updateTeam(@PathVariable String id,
+                           @RequestBody TeamDto teamDto,
+                           @RequestHeader(value = "Authorization", defaultValue = "") String header) {
+        teamService.updateTeam(id, teamDto, header);
+    }
+
+    @PostMapping("join/{id}")
+    public void joinTeamByIdAndCode(@PathVariable String id,
+                                    @RequestBody String code,
+                                    @RequestHeader(value = "Authorization", defaultValue = "") String header) {
+        teamService.joinTeamByIdAndSecretCode(id, code, header);
     }
 }

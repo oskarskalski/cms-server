@@ -37,18 +37,17 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             UsernameAndPasswordAuthenticationRequest authenticationRequest = new ObjectMapper()
                     .readValue(request.getInputStream(), UsernameAndPasswordAuthenticationRequest.class);
 
-            User user = userAuthenticationService.getUserByEmail(authenticationRequest.getUsername());
+            User user = userAuthenticationService.findUserByEmail(authenticationRequest.getUsername());
 
             if(user != null){
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getUsername(),
+                        user.getId(),
                         authenticationRequest.getPassword()
                 );
 
                 Authentication authenticate = authenticationManager.authenticate(authentication);
                 return authenticate;
             }else{
-                System.out.println("test");
                 throw new AccessDeniedException();
             }
         } catch (IOException e) {

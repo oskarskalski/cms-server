@@ -1,15 +1,35 @@
 package com.oskarskalski.cms.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Team {
     @Id
     private String id;
+
+    @NonNull
+    @Min(5)
+    @Max(35)
     private String name;
+
+    @NonNull
+    @Min(10)
+    @Max(100)
     private String description;
+
     private String code;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "teamId")
+    private List<TeamMember> teamMembers;
 
     public String getId() {
         return id;
@@ -41,5 +61,13 @@ public class Team {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<TeamMember> getTeamMembers() {
+        return teamMembers;
+    }
+
+    public void setTeamMembers(List<TeamMember> teamMembers) {
+        this.teamMembers = teamMembers;
     }
 }

@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.service;
 
+import com.oskarskalski.cms.exception.NotFoundException;
 import com.oskarskalski.cms.model.TeamMember;
 import com.oskarskalski.cms.repo.TeamMemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,12 @@ public class TeamMemberService {
 
     public void add(TeamMember teamMember){
         teamMemberRepo.save(teamMember);
+    }
+
+    public long getTeamCreatorIdByTeamId(String id) {
+        TeamMember teamMember = teamMemberRepo.findTeamMemberByTeamIdAndRoleId(id, 1)
+                .orElseThrow(NotFoundException::new);
+
+        return teamMember.getUserId();
     }
 }

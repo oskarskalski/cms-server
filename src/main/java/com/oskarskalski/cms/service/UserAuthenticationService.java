@@ -14,7 +14,7 @@ public class UserAuthenticationService {
         this.userRepo = userRepo;
     }
 
-    public User getUserByEmail(String email){
+    public User findUserByEmail(String email){
         return userRepo.findByEmail(email)
                 .orElseThrow(NullPointerException::new);
     }
