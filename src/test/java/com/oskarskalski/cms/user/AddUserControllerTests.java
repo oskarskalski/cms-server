@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Tag("addUser")
+@DisplayName("addUser")
 public class AddUserControllerTests {
     @Autowired
     private MockMvc mvc;

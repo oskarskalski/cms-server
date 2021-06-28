@@ -2,6 +2,7 @@ package com.oskarskalski.cms.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oskarskalski.cms.dto.UserDto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Tag("getUser")
+@DisplayName("getUser")
 public class GetUserControllerTests {
 
     @Autowired

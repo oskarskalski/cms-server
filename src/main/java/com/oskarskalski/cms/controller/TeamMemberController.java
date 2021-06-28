@@ -17,7 +17,6 @@ public class TeamMemberController {
 
     @PostMapping("add")
     public void addMember(@RequestBody TeamMember teamMember){
-        System.out.println(teamMember.getUserId());
         teamMemberService.add(teamMember);
     }
 

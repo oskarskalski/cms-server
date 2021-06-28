@@ -18,8 +18,9 @@ public class ArticleController {
     }
 
     @PostMapping("/add")
-    public void addArticle(@RequestBody ArticleDto articleDto){
-        articleService.addArticle(articleDto, 0);
+    public void addArticle(@RequestBody ArticleDto articleDto,
+                           @RequestHeader(value = "Authorization", defaultValue = "") String header){
+        articleService.addArticle(articleDto, header);
     }
 
     @GetMapping("{authorId}")

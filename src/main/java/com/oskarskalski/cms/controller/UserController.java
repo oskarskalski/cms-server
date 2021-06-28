@@ -40,7 +40,6 @@ public class UserController {
     @PutMapping("update")
     public void updateUser(@RequestBody UserRequest user,
                            @RequestHeader(value = "Authorization", defaultValue = "") String header){
-        System.out.println(header);
         userService.updateUser(user, header);
     }
 }
