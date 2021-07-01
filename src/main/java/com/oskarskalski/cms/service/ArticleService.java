@@ -58,9 +58,9 @@ public class ArticleService {
             throw new AccessDeniedException();
         }
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
-        long user_id = Long.parseLong(decodedJWT.getClaim("id").asString());
+        long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
 
-        if (user_id > 0) {
+        if (userId > 0) {
 
             String generateArticleId = UUID.randomUUID().toString();
             Date date = new Date();
@@ -68,7 +68,7 @@ public class ArticleService {
             Article article = new Article();
 
             article.setId(generateArticleId);
-            article.setAuthorId(user_id);
+            article.setAuthorId(userId);
             article.setTitle(articleDto.getTitle());
             article.setContent(articleDto.getContent());
             article.setDate(date);
