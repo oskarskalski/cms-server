@@ -1,14 +1,13 @@
 package com.oskarskalski.cms.service.user;
 
 import com.oskarskalski.cms.dto.UserDto;
-import com.oskarskalski.cms.operations.Get;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetUserService implements Get<Long, UserDto> {
+public class GetUserService {
     private final UserRepo userRepo;
 
     @Autowired
@@ -16,7 +15,6 @@ public class GetUserService implements Get<Long, UserDto> {
         this.userRepo = userRepo;
     }
 
-    @Override
     public UserDto getById(Long id) {
         User user = userRepo.findById(id)
                 .orElseThrow(NullPointerException::new);

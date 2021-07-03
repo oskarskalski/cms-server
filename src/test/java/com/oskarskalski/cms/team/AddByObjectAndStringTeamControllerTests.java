@@ -18,7 +18,7 @@ import static com.oskarskalski.cms.TestData.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("addTeam")
-public class AddTeamControllerTests {
+public class AddByObjectAndStringTeamControllerTests {
 
     @Autowired
     private MockMvc mvc;

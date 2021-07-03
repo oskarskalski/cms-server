@@ -33,15 +33,16 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable().antMatcher("/api/user/add").antMatcher("/login")
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                .csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterBefore(new AuthorizationFilter(), AuthenticationFilter.class)
                 .addFilter(new AuthenticationFilter(authenticationManager(), userAuthenticationService))
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .authorizeRequests()
+                .antMatchers("/api/user/add", "/login").permitAll()
+                .anyRequest()
+                .authenticated();
     }
 
     @Override

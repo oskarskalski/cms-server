@@ -5,10 +5,7 @@ import org.springframework.lang.NonNull;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Team {
@@ -26,6 +23,7 @@ public class Team {
     private String description;
 
     private String code;
+    private boolean softDelete;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "teamId")
@@ -61,6 +59,14 @@ public class Team {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
     }
 
     public List<TeamMember> getTeamMembers() {
