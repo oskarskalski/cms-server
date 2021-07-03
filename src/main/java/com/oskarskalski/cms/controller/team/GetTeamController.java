@@ -27,7 +27,7 @@ public class GetTeamController {
         return getTeamService.getTeamCode(id, header);
     }
 
-    @GetMapping("code/isCorrect/{id}")
+    @GetMapping("code/check/{id}")
     public boolean isCorrectTeamCode(@PathVariable String id, @RequestParam String code){
         return getTeamService.isCorrectTeamCode(id, code);
     }

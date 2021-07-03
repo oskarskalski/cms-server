@@ -41,8 +41,8 @@ public class AddTeamService {
         }
 
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
-        long user_id = Long.parseLong(decodedJWT.getClaim("id").asString());
-        if (user_id > 0) {
+        long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
+        if (userId > 0) {
             String generateId = UUID.randomUUID().toString();
             Team team = new Team();
             team.setName(teamDto.getName());
@@ -51,7 +51,7 @@ public class AddTeamService {
             team.setCode(generateCodeForJoiningTeam());
 
             teamRepo.save(team);
-            addUserToTeam(generateId, header, 1, user_id);
+            addUserToTeam(generateId, header, 1, userId);
         } else
             throw new AccessDeniedException();
     }
