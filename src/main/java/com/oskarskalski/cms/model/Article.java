@@ -17,6 +17,7 @@ public class Article {
     private String content;
     private String namesOfImages;
     private long authorId;
+    private String teamId;
     private Date date;
     private boolean softDelete;
 
@@ -58,6 +59,14 @@ public class Article {
 
     public void setAuthorId(long authorId) {
         this.authorId = authorId;
+    }
+
+    public String getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
 
     public Date getDate() {
