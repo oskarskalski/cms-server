@@ -5,7 +5,7 @@ import java.util.Date;
 public class CommentDto {
     private long id;
     private String content;
-    private String author;
+    private long userId;
     private Date date;
 
     public long getId() {
@@ -24,12 +24,12 @@ public class CommentDto {
         this.content = content;
     }
 
-    public String getAuthor() {
-        return author;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public Date getDate() {

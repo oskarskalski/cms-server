@@ -67,21 +67,4 @@ public class Comment {
     public void setSoftDelete(boolean softDelete) {
         this.softDelete = softDelete;
     }
-
-    public CommentDto convertToDto() {
-        CommentDto commentDto = new CommentDto();
-
-        commentDto.setContent(this.getContent());
-        commentDto.setId(this.getId());
-        commentDto.setDate(this.getDate());
-
-        final String uri = "http://localhost:8080/api/users/fullName/" + getAuthorId();
-
-        RestTemplate restTemplate = new RestTemplate();
-        String fullNameAuthor = restTemplate.getForObject(uri, String.class);
-
-        commentDto.setAuthor(fullNameAuthor);
-
-        return commentDto;
-    }
 }

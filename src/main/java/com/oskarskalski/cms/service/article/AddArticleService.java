@@ -29,9 +29,6 @@ public class AddArticleService {
             throw new InvalidDataException();
         }
 
-        if (header == null || !header.startsWith("Bearer ")) {
-            throw new AccessDeniedException();
-        }
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
         long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
 

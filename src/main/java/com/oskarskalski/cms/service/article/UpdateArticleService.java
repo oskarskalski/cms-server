@@ -1,9 +1,11 @@
 package com.oskarskalski.cms.service.article;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.dto.ArticleDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.InvalidDataException;
 import com.oskarskalski.cms.exception.NotFoundException;
+import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.Article;
 import com.oskarskalski.cms.repo.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateArticleService {
     private final ArticleRepo articleRepo;
+    private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
     public UpdateArticleService(ArticleRepo articleRepo) {
@@ -20,9 +23,8 @@ public class UpdateArticleService {
 
 
     public void updateArticle(ArticleDto articleDto, String header, String id) {
-        if (header == null || !header.startsWith("Bearer")) {
-            throw new AccessDeniedException();
-        }
+        DecodedJWT decodedJWT = jwtConfiguration.parse(header);
+        long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
 
         if (articleDto.getContent() == null && articleDto.getTitle() == null) {
             throw new InvalidDataException();
@@ -40,6 +42,10 @@ public class UpdateArticleService {
 
         Article article = articleRepo.findById(id)
                 .orElseThrow(NotFoundException::new);
+
+        if(article.getAuthorId() != userId){
+            throw new AccessDeniedException();
+        }
 
         if (articleDto.getTitle() != null && !article.getTitle().equals(articleDto.getTitle())) {
             article.setTitle(articleDto.getTitle());
