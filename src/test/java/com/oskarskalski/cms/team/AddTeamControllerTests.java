@@ -70,6 +70,7 @@ public class AddTeamControllerTests {
                 .andReturn();
 
         int httpStatus = mvcResult.getResponse().getStatus();
+        //Problem with added user to teammember db in this test. But it works in postman
         assertEquals(200, httpStatus);
     }
 

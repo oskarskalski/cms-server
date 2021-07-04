@@ -22,10 +22,11 @@ public class UpdateTeamController {
         updateTeamService.updateTeamCode(id, header);
     }
 
-    @PutMapping("update")
+    @PutMapping("update/{id}")
     public void updateTeam(
+            @PathVariable String id,
             @RequestBody TeamDto teamDto,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        updateTeamService.updateByDtoAndHeader(teamDto, header);
+        updateTeamService.updateByDtoAndHeader(id, teamDto, header);
     }
 }

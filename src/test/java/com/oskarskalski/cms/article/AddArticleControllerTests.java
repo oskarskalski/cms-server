@@ -148,7 +148,7 @@ public class AddArticleControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
         article.setTitle(TEST_ARTICLE_TITLE);
-        article.setContent(TEST_ARTICLE_CONTENT);
+        article.setContent(TEST_ARTICLE_CONTENT.substring(0, 60));
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
         MvcResult mvcResult = mvc.perform(post("/api/article/add")
                 .contentType(MediaType.APPLICATION_JSON)

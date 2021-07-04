@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.service.user;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.dto.UserRequest;
 import com.oskarskalski.cms.exception.InvalidDataException;
 import com.oskarskalski.cms.json.JwtConfiguration;
@@ -12,15 +13,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateUserService {
     private final UserRepo userRepo;
+    private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
     @Autowired
     public UpdateUserService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 
     public void updateByDtoAndHeader(UserRequest updatedUser, String header) {
-        JwtConfiguration jwtConfiguration = new JwtConfiguration();
-        String email = jwtConfiguration.parse(header).getSubject();
-        User user = userRepo.findByEmail(email)
+        DecodedJWT decodedJWT = jwtConfiguration.parse(header);
+        long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
+        User user = userRepo.findById(userId)
                 .orElseThrow();
 
         if (updatedUser.getFirstName() != null &&

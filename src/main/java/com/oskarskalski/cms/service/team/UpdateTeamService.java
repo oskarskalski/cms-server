@@ -23,11 +23,11 @@ public class UpdateTeamService{
         this.teamRepo = teamRepo;
     }
 
-    public void updateByDtoAndHeader(TeamDto teamDto, String header) {
+    public void updateByDtoAndHeader(String id, TeamDto teamDto, String header) {
         if (teamDto.getDescription() == null && teamDto.getName() == null)
             throw new InvalidDataException();
 
-        Team team = teamRepo.findById(teamDto.getId())
+        Team team = teamRepo.findById(id)
                 .orElseThrow(NotFoundException::new);
         TeamMember teamMember = teamCreator.getTeamCreator(team, header);
 

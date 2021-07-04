@@ -5,7 +5,7 @@ import com.oskarskalski.cms.service.article.AddArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@ResponseStatus
+@RestController
 @RequestMapping("/api/article/")
 public class AddArticleController {
     private final AddArticleService addArticleService;

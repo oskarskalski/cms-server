@@ -29,7 +29,7 @@ public class UpdateArticleControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonWithNullValues))
                 .andReturn();
@@ -44,7 +44,7 @@ public class UpdateArticleControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -61,7 +61,7 @@ public class UpdateArticleControllerTests {
         ArticleDto article = new ArticleDto();
         article.setTitle(TEST_ARTICLE_TITLE.substring(0, 3));
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -78,7 +78,7 @@ public class UpdateArticleControllerTests {
         ArticleDto article = new ArticleDto();
         article.setTitle(TEST_ARTICLE_TITLE);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -95,7 +95,7 @@ public class UpdateArticleControllerTests {
         ArticleDto article = new ArticleDto();
         article.setTitle(TEST_ARTICLE_TITLE.substring(0, 20));
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -112,7 +112,7 @@ public class UpdateArticleControllerTests {
         ArticleDto article = new ArticleDto();
         article.setContent(TEST_ARTICLE_CONTENT.substring(0, 40));
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -130,7 +130,7 @@ public class UpdateArticleControllerTests {
         ArticleDto article = new ArticleDto();
         article.setContent(TEST_ARTICLE_CONTENT + TEST_ARTICLE_CONTENT + TEST_ARTICLE_CONTENT + TEST_ARTICLE_CONTENT);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update")
+        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
