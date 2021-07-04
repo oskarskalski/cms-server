@@ -1,6 +1,5 @@
-package com.oskarskalski.cms.controller.teammate;
+package com.oskarskalski.cms.controller.teammember;
 
-import com.oskarskalski.cms.service.teammember.AddTeamMemberService;
 import com.oskarskalski.cms.service.teammember.DeleteTeamMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

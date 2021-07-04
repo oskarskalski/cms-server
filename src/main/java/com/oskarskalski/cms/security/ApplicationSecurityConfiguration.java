@@ -40,7 +40,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .addFilterBefore(new AuthorizationFilter(), AuthenticationFilter.class)
                 .addFilter(new AuthenticationFilter(authenticationManager(), userAuthenticationService))
                 .authorizeRequests()
-                .antMatchers("/api/user/add", "/login").permitAll()
+                .antMatchers("/api/users/add", "/login").permitAll()
                 .anyRequest()
                 .authenticated();
     }
