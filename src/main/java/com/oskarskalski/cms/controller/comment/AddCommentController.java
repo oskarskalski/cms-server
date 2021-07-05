@@ -18,9 +18,8 @@ public class AddCommentController {
     @PostMapping("add/{articleId}")
     public void addComment(
             @RequestBody CommentDto commentDto,
-            @RequestHeader(value = "Authorization", defaultValue = "") String header,
-            @PathVariable String articleId) {
+            @RequestHeader(value = "Authorization", defaultValue = "") String header) {
 
-        addCommentService.addComment(commentDto, header, articleId);
+        addCommentService.addByObjectAndAuthorizationHeader(commentDto, header);
     }
 }

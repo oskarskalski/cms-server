@@ -18,13 +18,13 @@ public class DeleteUserController {
     public void softDeleteUserById(
             @PathVariable long id,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        deleteUserService.softDeleteByIdAndHeader(id, header);
+        deleteUserService.softDeleteByIdAndAuthorizationHeader(id, header);
     }
 
     @DeleteMapping("deleteAll/{id}")
     public void hardDeleteUserById(
             @PathVariable long id,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        deleteUserService.hardDeleteByIdAndHeader(id, header);
+        deleteUserService.hardDeleteByIdAndAuthorizationHeader(id, header);
     }
 }

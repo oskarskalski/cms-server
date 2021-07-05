@@ -17,7 +17,7 @@ public class AddTeamController {
     @PostMapping("add")
     public void test(@RequestBody TeamDto teamDto,
                      @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        addTeamService.add(teamDto, header);
+        addTeamService.addByObjectAndAuthorizationHeader(teamDto, header);
     }
 
 }

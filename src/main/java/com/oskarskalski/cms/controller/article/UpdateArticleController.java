@@ -18,8 +18,7 @@ public class UpdateArticleController {
     @PutMapping("/update/{id}")
     public void updateAer(
             @RequestBody ArticleDto articleDto,
-            @RequestHeader(value = "Authorization", defaultValue = "") String header,
-            @PathVariable String id) {
-        updateArticleService.updateArticle(articleDto, header, id);
+            @RequestHeader(value = "Authorization", defaultValue = "") String header) {
+        updateArticleService.updateByObjectAndAuthorizationHeader(articleDto, header);
     }
 }

@@ -19,6 +19,6 @@ public class UpdateUserController {
     public void updateUserByUserRequestAndHeader(
             @RequestBody UserRequest user,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        updateUser.updateByDtoAndHeader(user, header);
+        updateUser.updateByObjectAndAuthorizationHeader(user, header);
     }
 }

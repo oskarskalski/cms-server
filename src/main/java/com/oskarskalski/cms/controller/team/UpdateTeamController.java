@@ -24,9 +24,8 @@ public class UpdateTeamController {
 
     @PutMapping("update/{id}")
     public void updateTeam(
-            @PathVariable String id,
             @RequestBody TeamDto teamDto,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        updateTeamService.updateByDtoAndHeader(id, teamDto, header);
+        updateTeamService.updateByObjectAndAuthorizationHeader(teamDto, header);
     }
 }

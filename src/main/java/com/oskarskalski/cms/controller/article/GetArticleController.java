@@ -25,7 +25,7 @@ public class GetArticleController {
 
     @GetMapping("/{id}")
     public ArticleDto getArticleById(@PathVariable String id){
-        return getArticleService.getArticleById(id);
+        return getArticleService.getById(id);
     }
 
     @GetMapping("/all/team/{teamId}")

@@ -17,13 +17,13 @@ public class DeleteTeamController {
     public void softDelete(
             @PathVariable String id,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        deleteTeamService.softDeleteByIdAndHeader(id, header);
+        deleteTeamService.softDeleteByIdAndAuthorizationHeader(id, header);
     }
 
     @DeleteMapping("/{id}/hard")
     public void hardDelete(
             @PathVariable String id,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        deleteTeamService.hardDeleteByIdAndHeader(id, header);
+        deleteTeamService.hardDeleteByIdAndAuthorizationHeader(id, header);
     }
 }

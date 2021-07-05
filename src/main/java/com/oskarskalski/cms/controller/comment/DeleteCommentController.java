@@ -18,13 +18,13 @@ public class DeleteCommentController {
     public void softDeleteComment(
             @PathVariable long id,
             @RequestHeader(value = "Authorization", defaultValue = "") String header){
-        deleteCommentService.softDeleteComment(id, header);
+        deleteCommentService.softDeleteByIdAndAuthorizationHeader(id, header);
     }
 
     @DeleteMapping("delete/hard/{id}")
     public void hardDeleteComment(
             @PathVariable long id,
             @RequestHeader(value = "Authorization", defaultValue = "") String header){
-        deleteCommentService.hardDeleteComment(id, header);
+        deleteCommentService.hardDeleteByIdAndAuthorizationHeader(id, header);
     }
 }

@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.controller.teammember;
 
+import com.oskarskalski.cms.dto.CodeDto;
 import com.oskarskalski.cms.model.TeamMember;
 import com.oskarskalski.cms.service.teammember.AddTeamMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,10 @@ public class AddTeamMemberController {
         addTeamMemberService.addByObject(teamMember);
     }
 
-    @PostMapping("add/{id}")
+    @PostMapping("add/")
     public void addTeamMember(
-            @PathVariable String id,
-            @RequestParam String code,
+            @RequestParam CodeDto codeDto,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
-        addTeamMemberService.addTeamMemberByTeamIdAndCode(id, code, header);
+        addTeamMemberService.addByObjectAndAuthorizationHeader(codeDto, header);
     }
 }

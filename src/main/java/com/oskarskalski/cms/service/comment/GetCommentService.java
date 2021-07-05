@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.service.comment;
 
+import com.oskarskalski.cms.crud.operation.Get;
 import com.oskarskalski.cms.dto.CommentDto;
 import com.oskarskalski.cms.model.Comment;
 import com.oskarskalski.cms.repo.CommentRepo;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetCommentService {
+public class GetCommentService implements Get<CommentDto, Long> {
     private final CommentRepo commentRepo;
 
     @Autowired
@@ -15,7 +16,7 @@ public class GetCommentService {
         this.commentRepo = commentRepo;
     }
 
-    public CommentDto getCommentById(long id){
+    public CommentDto getById(Long id){
         Comment comment = commentRepo.findById(id)
                 .orElseThrow(NullPointerException::new);
 
