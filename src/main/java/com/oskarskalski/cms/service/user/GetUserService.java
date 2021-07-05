@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.service.user;
 
+import com.oskarskalski.cms.crud.operation.Get;
 import com.oskarskalski.cms.dto.UserDto;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.UserRepo;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetUserService {
+public class GetUserService implements Get<UserDto, Long> {
     private final UserRepo userRepo;
 
     @Autowired

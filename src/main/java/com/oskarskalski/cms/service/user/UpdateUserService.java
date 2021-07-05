@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.service.user;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.dto.UserRequest;
 import com.oskarskalski.cms.exception.InvalidDataException;
 import com.oskarskalski.cms.json.JwtConfiguration;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateUserService {
+public class UpdateUserService implements SecuredUpdate<UserRequest> {
     private final UserRepo userRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
     @Autowired
@@ -19,7 +20,7 @@ public class UpdateUserService {
         this.userRepo = userRepo;
     }
 
-    public void updateByDtoAndHeader(UserRequest updatedUser, String header) {
+    public void updateByObjectAndAuthorizationHeader(UserRequest updatedUser, String header) {
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
         long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
         User user = userRepo.findById(userId)

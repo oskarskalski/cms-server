@@ -5,6 +5,7 @@ import java.util.Date;
 public class CommentDto {
     private long id;
     private String content;
+    private String articleId;
     private long userId;
     private Date date;
 
@@ -22,6 +23,14 @@ public class CommentDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 
     public long getUserId() {

@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.service.article;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.dto.ArticleDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.InvalidDataException;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateArticleService {
+public class UpdateArticleService implements SecuredUpdate<ArticleDto> {
     private final ArticleRepo articleRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
@@ -21,8 +22,7 @@ public class UpdateArticleService {
         this.articleRepo = articleRepo;
     }
 
-
-    public void updateArticle(ArticleDto articleDto, String header, String id) {
+    public void updateByObjectAndAuthorizationHeader(ArticleDto articleDto, String header) {
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
         long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
 
@@ -40,7 +40,7 @@ public class UpdateArticleService {
             throw new InvalidDataException();
         }
 
-        Article article = articleRepo.findById(id)
+        Article article = articleRepo.findById(articleDto.getId())
                 .orElseThrow(NotFoundException::new);
 
         if(article.getAuthorId() != userId){

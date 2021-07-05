@@ -18,7 +18,7 @@ public class AddTeamMemberController {
     @PostMapping("add")
     public void addTeamMember(@RequestBody TeamMember teamMember) {
         System.out.println("test");
-        addTeamMemberService.addTeamMember(teamMember);
+        addTeamMemberService.addByObject(teamMember);
     }
 
     @PostMapping("add/{id}")

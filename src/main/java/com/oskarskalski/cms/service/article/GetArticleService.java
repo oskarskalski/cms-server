@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.service.article;
 
+import com.oskarskalski.cms.crud.operation.Get;
 import com.oskarskalski.cms.dto.ArticleDto;
 import com.oskarskalski.cms.model.Article;
 import com.oskarskalski.cms.repo.ArticleRepo;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GetArticleService {
+public class GetArticleService implements Get<ArticleDto, String> {
     private final ArticleRepo articleRepo;
 
     @Autowired
@@ -19,7 +20,7 @@ public class GetArticleService {
         this.articleRepo = articleRepo;
     }
 
-    public ArticleDto getArticleById(String id) {
+    public ArticleDto getById(String id) {
         ArticleDto articleDto = articleRepo.findById(id)
                 .orElseThrow(NullPointerException::new)
                 .convertToDto();

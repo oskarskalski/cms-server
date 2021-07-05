@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.service.comment;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.oskarskalski.cms.crud.operation.SecuredDelete;
 import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.Comment;
 import com.oskarskalski.cms.repo.CommentRepo;
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteCommentService {
+public class DeleteCommentService implements SecuredDelete<Long> {
     private final CommentRepo commentRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
@@ -17,7 +18,7 @@ public class DeleteCommentService {
         this.commentRepo = commentRepo;
     }
 
-    public void softDeleteComment(long commentId, String header) {
+    public void softDeleteByIdAndAuthorizationHeader(Long commentId, String header) {
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
         long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
 
@@ -31,7 +32,7 @@ public class DeleteCommentService {
         }
     }
 
-    public void hardDeleteComment(long commentId, String header) {
+    public void hardDeleteByIdAndAuthorizationHeader(Long commentId, String header) {
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
         long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
 

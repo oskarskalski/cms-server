@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.service.article;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.oskarskalski.cms.crud.operation.SecuredDelete;
 import com.oskarskalski.cms.features.TeamCreator;
 import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.Article;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteArticleService {
+public class DeleteArticleService implements SecuredDelete<String> {
     private final ArticleRepo articleRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
@@ -18,7 +19,7 @@ public class DeleteArticleService {
         this.articleRepo = articleRepo;
     }
 
-    public void softDeleteByArticleIdAndUserId(String articleId, String header) {
+    public void softDeleteByIdAndAuthorizationHeader(String articleId, String header) {
         Article article = articleRepo.findById(articleId)
                 .orElseThrow(NullPointerException::new);
 
@@ -31,7 +32,7 @@ public class DeleteArticleService {
         }
     }
 
-    public void hardDeleteByArticleIdAndUserId(String articleId, String header) {
+    public void hardDeleteByIdAndAuthorizationHeader(String articleId, String header) {
         Article article = articleRepo.findById(articleId)
                 .orElseThrow(NullPointerException::new);
 

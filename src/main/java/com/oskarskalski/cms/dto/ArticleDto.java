@@ -6,11 +6,20 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Date;
 
 public class ArticleDto {
+    private String id;
     private String title;
     private String content;
     private String authorName;
     private Date date;
     private String[] images;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

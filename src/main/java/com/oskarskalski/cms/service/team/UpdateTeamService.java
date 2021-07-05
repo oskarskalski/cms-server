@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.service.team;
 
+import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.dto.TeamDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.InvalidDataException;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateTeamService{
+public class UpdateTeamService implements SecuredUpdate<TeamDto> {
     private final TeamRepo teamRepo;
     private final TeamCreator teamCreator = new TeamCreator();
 
@@ -23,11 +24,11 @@ public class UpdateTeamService{
         this.teamRepo = teamRepo;
     }
 
-    public void updateByDtoAndHeader(String id, TeamDto teamDto, String header) {
+    public void updateByObjectAndAuthorizationHeader(TeamDto teamDto, String header) {
         if (teamDto.getDescription() == null && teamDto.getName() == null)
             throw new InvalidDataException();
 
-        Team team = teamRepo.findById(id)
+        Team team = teamRepo.findById(teamDto.getId())
                 .orElseThrow(NotFoundException::new);
         TeamMember teamMember = teamCreator.getTeamCreator(team, header);
 

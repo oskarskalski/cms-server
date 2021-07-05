@@ -1,9 +1,11 @@
 package com.oskarskalski.cms.service.team;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.oskarskalski.cms.crud.operation.SecuredAdd;
 import com.oskarskalski.cms.dto.TeamDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.InvalidDataException;
+import com.oskarskalski.cms.features.CodeGenerator;
 import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.Team;
 import com.oskarskalski.cms.model.TeamMember;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @Service
-public class AddTeamService {
+public class AddTeamService implements SecuredAdd<TeamDto> {
     private final TeamRepo teamRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
@@ -29,7 +31,7 @@ public class AddTeamService {
         this.teamRepo = teamRepo;
     }
 
-    public void add(TeamDto teamDto, String header) {
+    public void addByObjectAndAuthorizationHeader(TeamDto teamDto, String header) {
         if (teamDto.getName() == null ||
                 teamDto.getName().length() < 5 || teamDto.getName().length() > 35) {
             throw new InvalidDataException();
@@ -48,23 +50,12 @@ public class AddTeamService {
             team.setName(teamDto.getName());
             team.setDescription(teamDto.getDescription());
             team.setId(generateId);
-            team.setCode(generateCodeForJoiningTeam());
+            team.setCode(CodeGenerator.generate(6));
 
             teamRepo.save(team);
             addUserToTeam(generateId, header, 1, userId);
         } else
             throw new AccessDeniedException();
-    }
-
-    public String generateCodeForJoiningTeam() {
-        StringBuilder code = new StringBuilder();
-
-        for (int i = 0; i < 6; i++) {
-            char generateCharacter = (char) (Math.random() * ('z' - 'a') + 'a');
-            code.append(generateCharacter);
-        }
-
-        return code.toString();
     }
 
     public void addUserToTeam(String id, String header, long role, long userId) {

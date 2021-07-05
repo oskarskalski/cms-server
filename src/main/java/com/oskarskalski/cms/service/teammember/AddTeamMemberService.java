@@ -1,5 +1,8 @@
 package com.oskarskalski.cms.service.teammember;
 
+import com.oskarskalski.cms.crud.operation.Add;
+import com.oskarskalski.cms.crud.operation.SecuredAdd;
+import com.oskarskalski.cms.dto.CodeDto;
 import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.TeamMember;
 import com.oskarskalski.cms.repo.TeamMemberRepo;
@@ -9,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class AddTeamMemberService {
+public class AddTeamMemberService implements Add<TeamMember>, SecuredAdd<CodeDto> {
     private final TeamMemberRepo teamMemberRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
@@ -18,24 +21,24 @@ public class AddTeamMemberService {
         this.teamMemberRepo = teamMemberRepo;
     }
 
-    public void addTeamMember(TeamMember teamMember) {
+    public void addByObject(TeamMember teamMember) {
         teamMemberRepo.save(teamMember);
     }
 
-    public void addTeamMemberByTeamIdAndCode(String teamId, String code, String header) {
+    public void addByObjectAndAuthorizationHeader(CodeDto codeDto, String header) {
         long userId = Long.parseLong(jwtConfiguration.parse(header).getClaim("id").asString());
 
         if (userId > 0) {
             RestTemplate restTemplate = new RestTemplate();
             String checkTeamCode
-                    = "http://localhost:8080/api/team/code/check/" + teamId + "?code=" + code;
+                    = "http://localhost:8080/api/team/code/check/" + codeDto.getTeamId() + "?code=" + codeDto.getCode();
             ResponseEntity<Boolean> response
                     = restTemplate.getForEntity(checkTeamCode, Boolean.class);
 
             if (response.getBody()) {
                 TeamMember teamMember = new TeamMember();
                 teamMember.setUserId(userId);
-                teamMember.setTeamId(teamId);
+                teamMember.setTeamId(codeDto.getTeamId());
                 teamMember.setRoleId(2);
 
 
