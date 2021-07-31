@@ -1,13 +1,10 @@
 package com.oskarskalski.cms.model;
 
 import com.oskarskalski.cms.dto.ArticleDto;
-import com.sun.istack.NotNull;
-import org.springframework.web.client.RestTemplate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Article {
@@ -20,6 +17,10 @@ public class Article {
     private String teamId;
     private Date date;
     private boolean softDelete;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "articleId")
+    private List<Comment> comments;
 
     public String getId() {
         return id;
@@ -85,25 +86,11 @@ public class Article {
         this.softDelete = softDelete;
     }
 
-    public ArticleDto convertToDto(){
-        ArticleDto articleDto = new ArticleDto();
-
-        final String uri = "http://localhost:8080/api/users/fullName/" + getAuthorId();
-
-        RestTemplate restTemplate = new RestTemplate();
-        String fullNameAuthor = restTemplate.getForObject(uri, String.class);
-
-        articleDto.setTitle(this.getTitle());
-        articleDto.setAuthorName(fullNameAuthor);
-        articleDto.setContent(this.getContent());
-        articleDto.setDate(this.getDate());
-
-        if(this.getNamesOfImages() != null){
-            articleDto.setImages(this.getNamesOfImages().split(" "));
-
-        }
-
-        return articleDto;
+    public List<Comment> getComments() {
+        return comments;
     }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

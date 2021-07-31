@@ -40,13 +40,16 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             User user = userAuthenticationService.findUserByEmail(authenticationRequest.getUsername());
 
             if(user != null){
-                Authentication authentication = new UsernamePasswordAuthenticationToken(
-                        user.getId(),
-                        authenticationRequest.getPassword()
-                );
+                if(!user.isSoftDelete()) {
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(
+                            user.getId(),
+                            authenticationRequest.getPassword()
+                    );
 
-                Authentication authenticate = authenticationManager.authenticate(authentication);
-                return authenticate;
+                    Authentication authenticate = authenticationManager.authenticate(authentication);
+                    return authenticate;
+                }else
+                    throw new AccessDeniedException();
             }else{
                 throw new AccessDeniedException();
             }

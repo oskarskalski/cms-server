@@ -20,6 +20,6 @@ public class GetCommentController {
 
     @GetMapping("{commentId}")
     public CommentDto getComment(@PathVariable long commentId){
-        return getCommentService.getCommentById(commentId);
+        return getCommentService.getById(commentId);
     }
 }

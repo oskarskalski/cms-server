@@ -22,7 +22,7 @@ public class DeleteTeamMemberController {
         deleteTeamMemberService.softDeleteByIdAndAuthorizationHeader(teamId, header);
     }
 
-    @DeleteMapping("{teamId}")
+    @DeleteMapping("hard/{teamId}")
     public void hardDelete(
             @PathVariable String teamId,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
