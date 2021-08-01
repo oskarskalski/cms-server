@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.service.article;
 
 import com.oskarskalski.cms.crud.operation.Get;
+import com.oskarskalski.cms.crud.operation.GetArticle;
 import com.oskarskalski.cms.dto.ArticleDto;
 import com.oskarskalski.cms.exception.NotFoundException;
 import com.oskarskalski.cms.model.Article;
@@ -14,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GetArticleService implements Get<ArticleDto, String> {
+public class GetArticleOpsService implements GetArticle {
     private final ArticleRepo articleRepo;
 
     @Autowired
-    public GetArticleService(ArticleRepo articleRepo) {
+    public GetArticleOpsService(ArticleRepo articleRepo) {
         this.articleRepo = articleRepo;
     }
 
@@ -69,6 +70,9 @@ public class GetArticleService implements Get<ArticleDto, String> {
     }
 
     private ArticleDto mapToArticleDto(Article article) {
+        if(article.isSoftDelete())
+            throw new NotFoundException();
+        
         if (article.getComments().size() != 0 && article.getComments() != null) {
             for (int i = 0; i < article.getComments().size(); i++) {
                 Comment comment = article.getComments().get(i);
@@ -79,13 +83,13 @@ public class GetArticleService implements Get<ArticleDto, String> {
         }
         ArticleDto articleDto = new ArticleDto();
 
-//        final String uri = "http://localhost:8080/api/users/fullName/" + article.getAuthorId();
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        String fullNameAuthor = restTemplate.getForObject(uri, String.class);
+        final String uri = "http://localhost:8080/api/users/fullName/" + article.getAuthorId();
+
+        RestTemplate restTemplate = new RestTemplate();
+        String fullNameAuthor = restTemplate.getForObject(uri, String.class);
 
         articleDto.setTitle(article.getTitle());
-        articleDto.setAuthorName(null);
+        articleDto.setAuthorName(fullNameAuthor);
         articleDto.setContent(article.getContent());
         articleDto.setDate(article.getDate());
         articleDto.setCommentDto(article.getComments());
