@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteTeamMemberService implements SecuredDelete<String> {
+public class DeleteTeamMemberOpsService implements SecuredDelete<String> {
     private final TeamMemberRepo teamMemberRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public DeleteTeamMemberService(TeamMemberRepo teamMemberRepo) {
+    public DeleteTeamMemberOpsService(TeamMemberRepo teamMemberRepo) {
         this.teamMemberRepo = teamMemberRepo;
     }
 

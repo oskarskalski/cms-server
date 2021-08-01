@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class GetTeamService implements Get<TeamDto, String> {
+public class GetTeamOpsService implements Get<TeamDto, String> {
     private final TeamRepo teamRepo;
 
     @Autowired
-    public GetTeamService(TeamRepo teamRepo) {
+    public GetTeamOpsService(TeamRepo teamRepo) {
         this.teamRepo = teamRepo;
     }
 

@@ -1,7 +1,7 @@
 package com.oskarskalski.cms.controller.user;
 
 import com.oskarskalski.cms.dto.UserDto;
-import com.oskarskalski.cms.service.user.GetUserService;
+import com.oskarskalski.cms.service.user.GetUserOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/users/")
 public class GetUserController {
-    private final GetUserService getUserService;
+    private final GetUserOpsService getUserService;
 
     @Autowired
-    public GetUserController(GetUserService getUserService) {
+    public GetUserController(GetUserOpsService getUserService) {
         this.getUserService = getUserService;
     }
 

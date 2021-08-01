@@ -1,17 +1,17 @@
 package com.oskarskalski.cms.controller.comment;
 
 import com.oskarskalski.cms.dto.CommentDto;
-import com.oskarskalski.cms.service.comment.AddCommentService;
+import com.oskarskalski.cms.service.comment.AddCommentOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/comment/")
 public class AddCommentController {
-    private final AddCommentService addCommentService;
+    private final AddCommentOpsService addCommentService;
 
     @Autowired
-    public AddCommentController(AddCommentService addCommentService) {
+    public AddCommentController(AddCommentOpsService addCommentService) {
         this.addCommentService = addCommentService;
     }
 

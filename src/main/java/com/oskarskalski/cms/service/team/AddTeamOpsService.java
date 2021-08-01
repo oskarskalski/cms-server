@@ -22,12 +22,12 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @Service
-public class AddTeamService implements SecuredAdd<TeamDto> {
+public class AddTeamOpsService implements SecuredAdd<TeamDto> {
     private final TeamRepo teamRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public AddTeamService(TeamRepo teamRepo) {
+    public AddTeamOpsService(TeamRepo teamRepo) {
         this.teamRepo = teamRepo;
     }
 

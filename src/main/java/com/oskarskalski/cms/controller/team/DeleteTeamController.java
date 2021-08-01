@@ -1,15 +1,15 @@
 package com.oskarskalski.cms.controller.team;
 
 
-import com.oskarskalski.cms.service.team.DeleteTeamService;
+import com.oskarskalski.cms.service.team.DeleteTeamOpsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/team/")
 public class DeleteTeamController {
-    private final DeleteTeamService deleteTeamService;
+    private final DeleteTeamOpsService deleteTeamService;
 
-    public DeleteTeamController(DeleteTeamService deleteTeamService) {
+    public DeleteTeamController(DeleteTeamOpsService deleteTeamService) {
         this.deleteTeamService = deleteTeamService;
     }
 

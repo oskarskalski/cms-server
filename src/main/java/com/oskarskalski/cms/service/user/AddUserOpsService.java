@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddUserService implements Add<User> {
+public class AddUserOpsService implements Add<User> {
     private UserRepo userRepo;
 
     @Autowired
-    public AddUserService(UserRepo userRepo) {
+    public AddUserOpsService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 

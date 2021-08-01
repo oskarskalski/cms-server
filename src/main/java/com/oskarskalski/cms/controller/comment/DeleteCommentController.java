@@ -1,16 +1,16 @@
 package com.oskarskalski.cms.controller.comment;
 
-import com.oskarskalski.cms.service.comment.DeleteCommentService;
+import com.oskarskalski.cms.service.comment.DeleteCommentOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/comment/")
 public class DeleteCommentController {
-    private final DeleteCommentService deleteCommentService;
+    private final DeleteCommentOpsService deleteCommentService;
 
     @Autowired
-    public DeleteCommentController(DeleteCommentService deleteCommentService) {
+    public DeleteCommentController(DeleteCommentOpsService deleteCommentService) {
         this.deleteCommentService = deleteCommentService;
     }
 

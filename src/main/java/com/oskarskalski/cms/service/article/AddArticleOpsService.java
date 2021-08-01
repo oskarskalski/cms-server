@@ -15,12 +15,12 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-public class AddArticleService implements SecuredAdd<ArticleDto> {
+public class AddArticleOpsService implements SecuredAdd<ArticleDto> {
     private final ArticleRepo articleRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public AddArticleService(ArticleRepo articleRepo) {
+    public AddArticleOpsService(ArticleRepo articleRepo) {
         this.articleRepo = articleRepo;
     }
 

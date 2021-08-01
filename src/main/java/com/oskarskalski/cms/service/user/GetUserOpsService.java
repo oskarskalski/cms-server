@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetUserService implements Get<UserDto, Long> {
+public class GetUserOpsService implements Get<UserDto, Long> {
     private final UserRepo userRepo;
 
     @Autowired
-    public GetUserService(UserRepo userRepo) {
+    public GetUserOpsService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 

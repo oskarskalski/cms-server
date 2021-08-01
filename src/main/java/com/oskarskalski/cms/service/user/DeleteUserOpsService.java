@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteUserService implements SecuredDelete<Long> {
+public class DeleteUserOpsService implements SecuredDelete<Long> {
     private final UserRepo userRepo;
 
     @Autowired
-    public DeleteUserService(UserRepo userRepo) {
+    public DeleteUserOpsService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 

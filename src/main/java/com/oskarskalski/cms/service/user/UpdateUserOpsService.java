@@ -12,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateUserService implements SecuredUpdate<UserRequest> {
+public class UpdateUserOpsService implements SecuredUpdate<UserRequest> {
     private final UserRepo userRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
+
     @Autowired
-    public UpdateUserService(UserRepo userRepo) {
+    public UpdateUserOpsService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 
@@ -45,7 +46,7 @@ public class UpdateUserService implements SecuredUpdate<UserRequest> {
                     .matches(updatedUser.getNewPassword(), user.getPassword())) {
                 String encodeNewPassword = passwordConfiguration.passwordEncoder().encode(updatedUser.getNewPassword());
                 user.setPassword(encodeNewPassword);
-            }else{
+            } else {
                 throw new InvalidDataException();
             }
         }

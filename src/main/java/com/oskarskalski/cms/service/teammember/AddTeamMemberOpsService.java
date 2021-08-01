@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class AddTeamMemberService implements Add<TeamMember>, SecuredAdd<CodeDto> {
+public class AddTeamMemberOpsService implements Add<TeamMember>, SecuredAdd<CodeDto> {
     private final TeamMemberRepo teamMemberRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public AddTeamMemberService(TeamMemberRepo teamMemberRepo) {
+    public AddTeamMemberOpsService(TeamMemberRepo teamMemberRepo) {
         this.teamMemberRepo = teamMemberRepo;
     }
 

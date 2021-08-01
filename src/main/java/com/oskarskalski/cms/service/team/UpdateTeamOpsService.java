@@ -15,12 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateTeamService implements SecuredUpdate<TeamDto> {
+public class UpdateTeamOpsService implements SecuredUpdate<TeamDto> {
     private final TeamRepo teamRepo;
     private final TeamCreator teamCreator = new TeamCreator();
 
     @Autowired
-    public UpdateTeamService(TeamRepo teamRepo) {
+    public UpdateTeamOpsService(TeamRepo teamRepo) {
         this.teamRepo = teamRepo;
     }
 

@@ -1,16 +1,16 @@
 package com.oskarskalski.cms.controller.user;
 
-import com.oskarskalski.cms.service.user.DeleteUserService;
+import com.oskarskalski.cms.service.user.DeleteUserOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users/")
 public class DeleteUserController {
-    private final DeleteUserService deleteUserService;
+    private final DeleteUserOpsService deleteUserService;
 
     @Autowired
-    public DeleteUserController(DeleteUserService deleteUserService) {
+    public DeleteUserController(DeleteUserOpsService deleteUserService) {
         this.deleteUserService = deleteUserService;
     }
 

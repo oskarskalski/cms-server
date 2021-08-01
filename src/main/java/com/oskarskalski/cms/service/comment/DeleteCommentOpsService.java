@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteCommentService implements SecuredDelete<Long> {
+public class DeleteCommentOpsService implements SecuredDelete<Long> {
     private final CommentRepo commentRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public DeleteCommentService(CommentRepo commentRepo) {
+    public DeleteCommentOpsService(CommentRepo commentRepo) {
         this.commentRepo = commentRepo;
     }
 

@@ -2,17 +2,17 @@ package com.oskarskalski.cms.controller.teammember;
 
 import com.oskarskalski.cms.dto.CodeDto;
 import com.oskarskalski.cms.model.TeamMember;
-import com.oskarskalski.cms.service.teammember.AddTeamMemberService;
+import com.oskarskalski.cms.service.teammember.AddTeamMemberOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/teamMember/")
 public class AddTeamMemberController {
-    private final AddTeamMemberService addTeamMemberService;
+    private final AddTeamMemberOpsService addTeamMemberService;
 
     @Autowired
-    public AddTeamMemberController(AddTeamMemberService addTeamMemberService) {
+    public AddTeamMemberController(AddTeamMemberOpsService addTeamMemberService) {
         this.addTeamMemberService = addTeamMemberService;
     }
 

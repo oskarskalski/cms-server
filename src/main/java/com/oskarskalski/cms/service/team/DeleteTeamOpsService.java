@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteTeamService implements SecuredDelete<String> {
+public class DeleteTeamOpsService implements SecuredDelete<String> {
     private final TeamRepo teamRepo;
     private final TeamCreator teamCreator = new TeamCreator();
 
     @Autowired
-    public DeleteTeamService(TeamRepo teamRepo){
+    public DeleteTeamOpsService(TeamRepo teamRepo){
         this.teamRepo = teamRepo;
     }
 

@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class AddCommentService implements SecuredAdd<CommentDto> {
+public class AddCommentOpsService implements SecuredAdd<CommentDto> {
     private final CommentRepo commentRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public AddCommentService(CommentRepo commentRepo) {
+    public AddCommentOpsService(CommentRepo commentRepo) {
         this.commentRepo = commentRepo;
     }
 

@@ -1,17 +1,17 @@
 package com.oskarskalski.cms.controller.article;
 
 import com.oskarskalski.cms.dto.ArticleDto;
-import com.oskarskalski.cms.service.article.AddArticleService;
+import com.oskarskalski.cms.service.article.AddArticleOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/article/")
 public class AddArticleController {
-    private final AddArticleService addArticleService;
+    private final AddArticleOpsService addArticleService;
 
     @Autowired
-    public AddArticleController(AddArticleService addArticleService) {
+    public AddArticleController(AddArticleOpsService addArticleService) {
         this.addArticleService = addArticleService;
     }
 

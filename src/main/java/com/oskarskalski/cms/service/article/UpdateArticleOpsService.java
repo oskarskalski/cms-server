@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateArticleService implements SecuredUpdate<ArticleDto> {
+public class UpdateArticleOpsService implements SecuredUpdate<ArticleDto> {
     private final ArticleRepo articleRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public UpdateArticleService(ArticleRepo articleRepo) {
+    public UpdateArticleOpsService(ArticleRepo articleRepo) {
         this.articleRepo = articleRepo;
     }
 

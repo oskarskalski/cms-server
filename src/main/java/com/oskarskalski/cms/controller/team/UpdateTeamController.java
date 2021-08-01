@@ -1,17 +1,17 @@
 package com.oskarskalski.cms.controller.team;
 
 import com.oskarskalski.cms.dto.TeamDto;
-import com.oskarskalski.cms.service.team.UpdateTeamService;
+import com.oskarskalski.cms.service.team.UpdateTeamOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/team/")
 public class UpdateTeamController {
-    private final UpdateTeamService updateTeamService;
+    private final UpdateTeamOpsService updateTeamService;
 
     @Autowired
-    public UpdateTeamController(UpdateTeamService updateTeamService) {
+    public UpdateTeamController(UpdateTeamOpsService updateTeamService) {
         this.updateTeamService = updateTeamService;
     }
 

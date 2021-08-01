@@ -1,16 +1,16 @@
 package com.oskarskalski.cms.controller.teammember;
 
-import com.oskarskalski.cms.service.teammember.DeleteTeamMemberService;
+import com.oskarskalski.cms.service.teammember.DeleteTeamMemberOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/teammate/")
 public class DeleteTeamMemberController {
-    private final DeleteTeamMemberService deleteTeamMemberService;
+    private final DeleteTeamMemberOpsService deleteTeamMemberService;
 
     @Autowired
-    public DeleteTeamMemberController(DeleteTeamMemberService deleteTeamMemberService) {
+    public DeleteTeamMemberController(DeleteTeamMemberOpsService deleteTeamMemberService) {
         this.deleteTeamMemberService = deleteTeamMemberService;
     }
 

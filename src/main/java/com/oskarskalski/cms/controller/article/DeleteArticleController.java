@@ -1,16 +1,16 @@
 package com.oskarskalski.cms.controller.article;
 
-import com.oskarskalski.cms.service.article.DeleteArticleService;
+import com.oskarskalski.cms.service.article.DeleteArticleOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/article/")
 public class DeleteArticleController {
-    private final DeleteArticleService deleteArticleService;
+    private final DeleteArticleOpsService deleteArticleService;
 
     @Autowired
-    public DeleteArticleController(DeleteArticleService deleteArticleService) {
+    public DeleteArticleController(DeleteArticleOpsService deleteArticleService) {
         this.deleteArticleService = deleteArticleService;
     }
 
