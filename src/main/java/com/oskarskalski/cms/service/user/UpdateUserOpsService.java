@@ -4,6 +4,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.dto.UserRequest;
 import com.oskarskalski.cms.exception.InvalidDataException;
+import com.oskarskalski.cms.exception.NotFoundException;
 import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.UserRepo;
@@ -25,7 +26,7 @@ public class UpdateUserOpsService implements SecuredUpdate<UserRequest> {
         DecodedJWT decodedJWT = jwtConfiguration.parse(header);
         long userId = Long.parseLong(decodedJWT.getClaim("id").asString());
         User user = userRepo.findById(userId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::new);
 
         if (updatedUser.getFirstName() != null &&
                 updatedUser.getFirstName().length() >= 2 && updatedUser.getFirstName().length() <= 50)

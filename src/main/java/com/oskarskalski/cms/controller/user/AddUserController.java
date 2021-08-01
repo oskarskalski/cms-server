@@ -20,6 +20,7 @@ public class AddUserController {
 
     @PostMapping("add")
     public void addUser(@RequestBody User user){
+        System.out.println("test");
         addUserService.addByObject(user);
     }
 
