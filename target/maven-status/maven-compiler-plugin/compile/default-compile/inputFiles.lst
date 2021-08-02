@@ -11,7 +11,6 @@ C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\dto\UserDto
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\user\AddUserOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\crud\operation\SecuredUpdate.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\repo\UserRepo.java
-C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\json\JwtConfiguration.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\UserAuthenticationService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\teammember\DeleteTeamMemberOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\CmsApplication.java
@@ -23,6 +22,7 @@ C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\dto\CommentDto.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\article\DeleteArticleOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\team\UpdateTeamOpsService.java
+C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\configuration\JwtConfiguration.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\article\DeleteArticleController.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\teammember\AddTeamMemberController.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\security\ApplicationSecurityConfiguration.java

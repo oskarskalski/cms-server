@@ -17,7 +17,6 @@ com\oskarskalski\cms\repo\TeamMemberRepo.class
 com\oskarskalski\cms\controller\team\UpdateTeamController.class
 com\oskarskalski\cms\configuration\DataSourceConfig.class
 com\oskarskalski\cms\dto\UserDto.class
-com\oskarskalski\cms\json\JwtConfiguration.class
 com\oskarskalski\cms\dto\CommentDto.class
 com\oskarskalski\cms\filters\AuthorizationFilter.class
 com\oskarskalski\cms\dto\CodeDto.class
@@ -36,6 +35,7 @@ com\oskarskalski\cms\repo\TeamRoleRepo.class
 com\oskarskalski\cms\service\teammember\DeleteTeamMemberOpsService.class
 com\oskarskalski\cms\model\UsernameAndPasswordAuthenticationRequest.class
 com\oskarskalski\cms\service\teammember\AddTeamMemberOpsService.class
+com\oskarskalski\cms\configuration\JwtConfiguration.class
 com\oskarskalski\cms\crud\operation\GetArticle.class
 com\oskarskalski\cms\service\article\AddArticleOpsService.class
 com\oskarskalski\cms\service\comment\AddCommentOpsService.class
