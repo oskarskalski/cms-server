@@ -5,13 +5,10 @@ import com.oskarskalski.cms.dto.TeamDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.NotFoundException;
 import com.oskarskalski.cms.features.TeamCreator;
-import com.oskarskalski.cms.json.JwtConfiguration;
 import com.oskarskalski.cms.model.Team;
 import com.oskarskalski.cms.repo.TeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class GetTeamOpsService implements Get<TeamDto, String> {

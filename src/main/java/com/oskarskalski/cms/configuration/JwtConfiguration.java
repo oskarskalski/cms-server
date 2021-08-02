@@ -1,4 +1,4 @@
-package com.oskarskalski.cms.json;
+package com.oskarskalski.cms.configuration;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -16,7 +16,7 @@ public class JwtConfiguration {
             token = token.replace("Bearer ", "");
 
         try {
-            Algorithm algorithm = Algorithm.HMAC256("secret key");
+            Algorithm algorithm = Algorithm.HMAC256(System.getenv("SECRET_KEY"));
             JWTVerifier verifier = JWT.require(algorithm)
                     .withIssuer("auth0")
                     .build();
@@ -29,15 +29,13 @@ public class JwtConfiguration {
 
     public String build(Authentication authResult) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256("secret key");
+            Algorithm algorithm = Algorithm.HMAC256(System.getenv("SECRET_KEY"));
             System.out.println(authResult.getName());
             String token = JWT.create()
                     .withIssuer("auth0")
                     .withClaim("id", authResult.getName())
                     .withClaim("authorities", authResult.getAuthorities().toString())
                     .sign(algorithm);
-            System.out.println(token);
-
             return token;
         } catch (JWTCreationException exception) {
             throw new IllegalStateException();

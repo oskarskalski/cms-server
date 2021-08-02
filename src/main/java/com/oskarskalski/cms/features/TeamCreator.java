@@ -2,7 +2,7 @@ package com.oskarskalski.cms.features;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.exception.AccessDeniedException;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.Team;
 import com.oskarskalski.cms.model.TeamMember;
 

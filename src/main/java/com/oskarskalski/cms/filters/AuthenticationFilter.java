@@ -2,7 +2,7 @@ package com.oskarskalski.cms.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oskarskalski.cms.exception.AccessDeniedException;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.model.UsernameAndPasswordAuthenticationRequest;
 import com.oskarskalski.cms.service.UserAuthenticationService;

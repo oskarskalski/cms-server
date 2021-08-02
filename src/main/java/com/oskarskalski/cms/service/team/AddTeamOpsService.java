@@ -6,7 +6,7 @@ import com.oskarskalski.cms.dto.TeamDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.InvalidDataException;
 import com.oskarskalski.cms.features.CodeGenerator;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.Team;
 import com.oskarskalski.cms.model.TeamMember;
 import com.oskarskalski.cms.repo.TeamRepo;

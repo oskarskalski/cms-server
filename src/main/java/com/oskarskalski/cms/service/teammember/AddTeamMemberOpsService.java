@@ -3,7 +3,7 @@ package com.oskarskalski.cms.service.teammember;
 import com.oskarskalski.cms.crud.operation.Add;
 import com.oskarskalski.cms.crud.operation.SecuredAdd;
 import com.oskarskalski.cms.dto.CodeDto;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.TeamMember;
 import com.oskarskalski.cms.repo.TeamMemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;

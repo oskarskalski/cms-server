@@ -2,7 +2,7 @@ package com.oskarskalski.cms.service.comment;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.crud.operation.SecuredDelete;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.Comment;
 import com.oskarskalski.cms.repo.CommentRepo;
 import org.springframework.beans.factory.annotation.Autowired;

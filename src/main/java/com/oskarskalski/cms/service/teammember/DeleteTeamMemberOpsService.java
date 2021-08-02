@@ -4,7 +4,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.crud.operation.SecuredDelete;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.NotFoundException;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.TeamMember;
 import com.oskarskalski.cms.repo.TeamMemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;

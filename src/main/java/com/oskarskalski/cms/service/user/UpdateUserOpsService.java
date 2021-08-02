@@ -5,7 +5,7 @@ import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.dto.UserRequest;
 import com.oskarskalski.cms.exception.InvalidDataException;
 import com.oskarskalski.cms.exception.NotFoundException;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.UserRepo;
 import com.oskarskalski.cms.security.PasswordConfiguration;

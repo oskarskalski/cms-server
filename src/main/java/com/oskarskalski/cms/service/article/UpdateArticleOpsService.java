@@ -6,7 +6,7 @@ import com.oskarskalski.cms.dto.ArticleDto;
 import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.exception.InvalidDataException;
 import com.oskarskalski.cms.exception.NotFoundException;
-import com.oskarskalski.cms.json.JwtConfiguration;
+import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.Article;
 import com.oskarskalski.cms.repo.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
