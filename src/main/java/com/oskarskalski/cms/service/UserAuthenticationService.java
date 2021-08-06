@@ -8,7 +8,6 @@ import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.SignInAttemptRepo;
 import com.oskarskalski.cms.repo.UserRepo;
 import com.oskarskalski.cms.security.PasswordConfiguration;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
