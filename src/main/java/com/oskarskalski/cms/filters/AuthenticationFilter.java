@@ -37,7 +37,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             UsernameAndPasswordAuthenticationRequest authenticationRequest = new ObjectMapper()
                     .readValue(request.getInputStream(), UsernameAndPasswordAuthenticationRequest.class);
 
-            User user = userAuthenticationService.findUserByEmail(authenticationRequest.getUsername());
+            User user = userAuthenticationService
+                    .findUserByEmailAndPassword(authenticationRequest.getUsername(),
+                            authenticationRequest.getPassword());
 
             if(user != null){
                 if(!user.isSoftDelete()) {
@@ -54,7 +56,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 throw new AccessDeniedException();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new AccessDeniedException();
         }
 
     }

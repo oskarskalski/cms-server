@@ -1,5 +1,6 @@
 package com.oskarskalski.cms.controller.user;
 
+import com.oskarskalski.cms.dto.UserRequest;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.service.user.AddUserOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,8 @@ public class AddUserController {
     }
 
     @PostMapping("add")
-    public void addUser(@RequestBody User user){
-        System.out.println("test");
-        addUserService.addByObject(user);
+    public void addUser(@RequestBody UserRequest userRequest){
+        addUserService.addByObject(userRequest);
     }
 
 }

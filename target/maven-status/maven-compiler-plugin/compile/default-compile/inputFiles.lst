@@ -58,6 +58,7 @@ C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\teammember\AddTeamMemberOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\crud\operation\SecuredAdd.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\features\CodeGenerator.java
+C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\repo\SignInAttemptRepo.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\article\GetArticleOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\team\DeleteTeamOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\model\Team.java
@@ -69,5 +70,6 @@ C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\comment\GetCommentOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\user\UpdateUserOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\crud\operation\GetArticle.java
+C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\model\SignInAttempt.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\teammember\DeleteTeamMemberController.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\repo\ArticleRepo.java

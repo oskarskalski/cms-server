@@ -3,11 +3,12 @@ package com.oskarskalski.cms.dto;
 public class UserRequest extends UserDto{
     private String oldPassword;
     private String newPassword;
+    private String repeatNewPassword;
 
-    public UserRequest(String firstName, String lastName, String email, String oldPassword, String newPassword) {
-        super(firstName, lastName, email);
+    public UserRequest(String oldPassword, String newPassword, String repeatNewPassword) {
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;
+        this.repeatNewPassword = repeatNewPassword;
     }
 
     public UserRequest() {
@@ -27,5 +28,13 @@ public class UserRequest extends UserDto{
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getRepeatNewPassword() {
+        return repeatNewPassword;
+    }
+
+    public void setRepeatNewPassword(String repeatNewPassword) {
+        this.repeatNewPassword = repeatNewPassword;
     }
 }

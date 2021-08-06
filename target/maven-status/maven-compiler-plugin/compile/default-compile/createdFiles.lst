@@ -15,6 +15,7 @@ com\oskarskalski\cms\security\UserAuthenticationProvider.class
 com\oskarskalski\cms\service\article\UpdateArticleOpsService.class
 com\oskarskalski\cms\repo\TeamMemberRepo.class
 com\oskarskalski\cms\controller\team\UpdateTeamController.class
+com\oskarskalski\cms\model\SignInAttempt.class
 com\oskarskalski\cms\configuration\DataSourceConfig.class
 com\oskarskalski\cms\dto\UserDto.class
 com\oskarskalski\cms\dto\CommentDto.class
@@ -32,6 +33,7 @@ com\oskarskalski\cms\exception\NotFoundException.class
 com\oskarskalski\cms\controller\user\DeleteUserController.class
 com\oskarskalski\cms\crud\operation\Get.class
 com\oskarskalski\cms\repo\TeamRoleRepo.class
+com\oskarskalski\cms\repo\SignInAttemptRepo.class
 com\oskarskalski\cms\service\teammember\DeleteTeamMemberOpsService.class
 com\oskarskalski\cms\model\UsernameAndPasswordAuthenticationRequest.class
 com\oskarskalski\cms\service\teammember\AddTeamMemberOpsService.class

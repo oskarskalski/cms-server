@@ -3,12 +3,13 @@ package com.oskarskalski.cms.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
     private String firstName;
@@ -20,6 +21,8 @@ public class User {
     private boolean softDelete;
     @NotNull
     private String password;
+    @NotNull
+    private Date createdAt;
 
     public long getId() {
         return id;
@@ -67,5 +70,13 @@ public class User {
 
     public void setSoftDelete(boolean softDelete) {
         this.softDelete = softDelete;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
