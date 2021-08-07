@@ -3,6 +3,7 @@ package com.oskarskalski.cms.security;
 import com.oskarskalski.cms.filters.AuthenticationFilter;
 import com.oskarskalski.cms.filters.AuthorizationFilter;
 import com.oskarskalski.cms.repo.UserRepo;
+import com.oskarskalski.cms.service.AttemptSignInService;
 import com.oskarskalski.cms.service.UserAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -20,14 +21,19 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     private final UserRepo userRepo;
     private final UserAuthenticationProvider userAuthenticationProvider;
     private final UserAuthenticationService userAuthenticationService;
+    private final AttemptSignInService attemptSignInService;
 
     @Autowired
-    public ApplicationSecurityConfiguration(PasswordEncoder passwordEncoder, UserRepo userRepo, UserAuthenticationProvider userAuthenticationProvider,
-                                            UserAuthenticationService userAuthenticationService) {
+    public ApplicationSecurityConfiguration(PasswordEncoder passwordEncoder,
+                                            UserRepo userRepo,
+                                            UserAuthenticationProvider userAuthenticationProvider,
+                                            UserAuthenticationService userAuthenticationService,
+                                            AttemptSignInService attemptSignInService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepo = userRepo;
         this.userAuthenticationProvider = userAuthenticationProvider;
         this.userAuthenticationService = userAuthenticationService;
+        this.attemptSignInService = attemptSignInService;
     }
 
     @Override
@@ -38,7 +44,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterBefore(new AuthorizationFilter(), AuthenticationFilter.class)
-                .addFilter(new AuthenticationFilter(authenticationManager(), userAuthenticationService))
+                .addFilter(new AuthenticationFilter(authenticationManager(), userAuthenticationService, attemptSignInService))
                 .authorizeRequests()
                 .antMatchers("/api/users/add", "/login", "/api/users/fullName/*").permitAll()
                 .anyRequest()

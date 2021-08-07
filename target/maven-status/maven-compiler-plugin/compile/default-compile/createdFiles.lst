@@ -28,6 +28,7 @@ com\oskarskalski\cms\controller\comment\AddCommentController.class
 com\oskarskalski\cms\service\team\DeleteTeamOpsService.class
 com\oskarskalski\cms\CmsApplication.class
 com\oskarskalski\cms\model\Article.class
+com\oskarskalski\cms\service\AttemptSignInService.class
 com\oskarskalski\cms\security\ApplicationSecurityConfiguration.class
 com\oskarskalski\cms\exception\NotFoundException.class
 com\oskarskalski\cms\controller\user\DeleteUserController.class

@@ -21,6 +21,12 @@ public class AddUserOpsService implements Add<UserRequest> {
     }
 
     public void addByObject(UserRequest userRequest) {
+        if(userRepo.findByEmail(userRequest.getEmail()).isPresent())
+            throw new InvalidDataException();
+
+        if(!userRequest.getNewPassword().equals(userRequest.getRepeatNewPassword()))
+            throw new InvalidDataException();
+
         if (userRequest.getFirstName() == null ||
                 userRequest.getFirstName().length() < 2 ||
                 userRequest.getFirstName().length() > 50)
@@ -35,12 +41,6 @@ public class AddUserOpsService implements Add<UserRequest> {
                 userRequest.getNewPassword().length() < 10 ||
                 userRequest.getNewPassword().length() > 128)
             throw new InvalidDataException();
-
-        if(!userRequest.getNewPassword().equals(userRequest.getRepeatNewPassword()))
-            throw new InvalidDataException();
-
-//        if(!userRepo.findByEmail(userRequest.getEmail()).isPresent())
-//            throw new InvalidDataException();
 
         PasswordConfiguration passwordConfiguration = new PasswordConfiguration();
         String password = passwordConfiguration.passwordEncoder()

@@ -28,6 +28,7 @@ C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\controller\
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\security\ApplicationSecurityConfiguration.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\article\AddArticleOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\article\UpdateArticleOpsService.java
+C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\AttemptSignInService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\dto\ArticleDto.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\team\GetTeamOpsService.java
 C:\Users\Admin\Desktop\cms-server\src\main\java\com\oskarskalski\cms\service\comment\AddCommentOpsService.java

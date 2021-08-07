@@ -5,6 +5,7 @@ import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.model.UsernameAndPasswordAuthenticationRequest;
+import com.oskarskalski.cms.service.AttemptSignInService;
 import com.oskarskalski.cms.service.UserAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,11 +23,15 @@ import java.io.IOException;
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final UserAuthenticationService userAuthenticationService;
+    private final AttemptSignInService attemptSignInService;
 
     @Autowired
-    public AuthenticationFilter(AuthenticationManager authenticationManager, UserAuthenticationService userAuthenticationService) {
+    public AuthenticationFilter(AuthenticationManager authenticationManager,
+                                UserAuthenticationService userAuthenticationService,
+                                AttemptSignInService attemptSignInService) {
         this.authenticationManager = authenticationManager;
         this.userAuthenticationService = userAuthenticationService;
+        this.attemptSignInService = attemptSignInService;
     }
 
     @Override
@@ -38,8 +43,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                     .readValue(request.getInputStream(), UsernameAndPasswordAuthenticationRequest.class);
 
             User user = userAuthenticationService
-                    .findUserByEmailAndPassword(authenticationRequest.getUsername(),
-                            authenticationRequest.getPassword());
+                    .findUserByEmail(authenticationRequest.getUsername());
 
             if(user != null){
                 if(!user.isSoftDelete()) {
@@ -47,6 +51,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                             user.getId(),
                             authenticationRequest.getPassword()
                     );
+
+                    if(!attemptSignInService.attemptSignIn(user, authenticationRequest.getPassword()))
+                        throw new AccessDeniedException();
 
                     Authentication authenticate = authenticationManager.authenticate(authentication);
                     return authenticate;
