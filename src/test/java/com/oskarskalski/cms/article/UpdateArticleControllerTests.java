@@ -43,8 +43,9 @@ public class UpdateArticleControllerTests {
     public void givenIsTeamWithoutData__ExceptedHttpStatus__Returned400Status() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
+        article.setId(TEST_ARTICLE_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/article/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -59,9 +60,10 @@ public class UpdateArticleControllerTests {
     public void givenIsTeamWithTooShortTitle__ExceptedHttpStatus__Returned400Status() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
+        article.setId(TEST_ARTICLE_ID);
         article.setTitle(TEST_ARTICLE_TITLE.substring(0, 3));
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/article/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -77,8 +79,9 @@ public class UpdateArticleControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
         article.setTitle(TEST_ARTICLE_TITLE);
+        article.setId(TEST_ARTICLE_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/article/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -94,8 +97,9 @@ public class UpdateArticleControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
         article.setTitle(TEST_ARTICLE_TITLE.substring(0, 20));
+        article.setId(TEST_ARTICLE_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/article/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -111,8 +115,9 @@ public class UpdateArticleControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
         article.setContent(TEST_ARTICLE_CONTENT.substring(0, 40));
+        article.setId(TEST_ARTICLE_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/article/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -128,9 +133,10 @@ public class UpdateArticleControllerTests {
     public void givenIsTeamWithTooLongContent__ExceptedHttpStatus__Returned400Status() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         ArticleDto article = new ArticleDto();
+        article.setId(TEST_ARTICLE_ID);
         article.setContent(TEST_ARTICLE_CONTENT + TEST_ARTICLE_CONTENT + TEST_ARTICLE_CONTENT + TEST_ARTICLE_CONTENT);
         String jsonWithNullValues = objectMapper.writeValueAsString(article);
-        MvcResult mvcResult = mvc.perform(put("/api/article/update/" + TEST_ARTICLE_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/article/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))

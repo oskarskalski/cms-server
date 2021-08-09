@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oskarskalski.cms.dto.UserDto;
 import com.oskarskalski.cms.dto.UserRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -41,18 +42,79 @@ public class UpdateUserControllerTests {
 
     @Test
     @DisplayName("Update first name")
-    public void givenIsUserWithNullFields__ExceptedHttpStatus__Returned400Status() throws Exception {
+    public void givenIsUserWithFirstName__ExceptedUpdatedFirstName__ReturnedUpdatedFirstName() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         UserRequest user = new UserRequest();
-        user.setFirstName("test123");
+        String firstName = TEST_FIRST_NAME;
+        user.setFirstName(firstName);
         String jsonWithNullValues = objectMapper.writeValueAsString(user);
-        MvcResult mvcResult = mvc.perform(put("/api/users/update")
+        MvcResult updateUser = mvc.perform(put("/api/users/update")
                 .header("Authorization", "Bearer " + TEST_JWT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonWithNullValues))
                 .andReturn();
 
-        int httpStatus = mvcResult.getResponse().getStatus();
-        assertEquals(200, httpStatus);
+        MvcResult getUser = mvc.perform(get("/api/users/" + TEST_ID)
+                .header("Authorization", "Bearer " + TEST_JWT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonWithNullValues))
+                .andReturn();
+
+        UserDto userDto = objectMapper.readValue(getUser.getResponse().getContentAsString(), UserDto.class);
+
+
+        assertEquals(firstName, userDto.getFirstName());
+    }
+
+    @Test
+    @DisplayName("Update last name")
+    public void givenIsUserWithLastName__ExceptedUpdatedLastName__ReturnedUpdatedLastName() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserRequest user = new UserRequest();
+        String lastName = TEST_LAST_NAME;
+        user.setLastName(lastName);
+        String jsonWithNullValues = objectMapper.writeValueAsString(user);
+        MvcResult updateUser = mvc.perform(put("/api/users/update")
+                .header("Authorization", "Bearer " + TEST_JWT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonWithNullValues))
+                .andReturn();
+
+        MvcResult getUser = mvc.perform(get("/api/users/" + TEST_ID)
+                .header("Authorization", "Bearer " + TEST_JWT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonWithNullValues))
+                .andReturn();
+
+        UserDto userDto = objectMapper.readValue(getUser.getResponse().getContentAsString(), UserDto.class);
+
+
+        assertEquals(lastName, userDto.getLastName());
+    }
+
+    @Test
+    @DisplayName("Update email")
+    public void givenIsUserWithEmail__ExceptedUpdatedEmail__ReturnedUpdatedEmail() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserRequest user = new UserRequest();
+        String email = TEST_EMAIL;
+        user.setEmail(email);
+        String jsonWithNullValues = objectMapper.writeValueAsString(user);
+        MvcResult updateUser = mvc.perform(put("/api/users/update")
+                .header("Authorization", "Bearer " + TEST_JWT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonWithNullValues))
+                .andReturn();
+
+        MvcResult getUser = mvc.perform(get("/api/users/" + TEST_ID)
+                .header("Authorization", "Bearer " + TEST_JWT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonWithNullValues))
+                .andReturn();
+
+        UserDto userDto = objectMapper.readValue(getUser.getResponse().getContentAsString(), UserDto.class);
+
+
+        assertEquals(email, userDto.getEmail());
     }
 }

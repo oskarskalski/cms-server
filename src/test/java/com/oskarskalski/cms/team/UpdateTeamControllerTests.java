@@ -71,7 +71,7 @@ public class UpdateTeamControllerTests {
         assertEquals(200, httpStatus);
     }
     @Test
-    @DisplayName("Update team by valid desciption")
+    @DisplayName("Update team by valid description")
     public void givenIsTeamWitValidDescription__ExceptedHttpStatus__Returned400Status() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();

@@ -16,13 +16,12 @@ public class AddTeamMemberController {
         this.addTeamMemberService = addTeamMemberService;
     }
 
-    @PostMapping("add")
+    @PostMapping("add/unsecured")
     public void addTeamMember(@RequestBody TeamMember teamMember) {
-        System.out.println("test");
         addTeamMemberService.addByObject(teamMember);
     }
 
-    @PostMapping("add/")
+    @PostMapping("add")
     public void addTeamMember(
             @RequestParam CodeDto codeDto,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {

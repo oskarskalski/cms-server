@@ -1,6 +1,5 @@
 package com.oskarskalski.cms.service;
 
-import com.oskarskalski.cms.exception.AccessDeniedException;
 import com.oskarskalski.cms.model.SignInAttempt;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.SignInAttemptRepo;
@@ -43,6 +42,9 @@ public class AttemptSignInService {
             Date getFirstDate = signInAttempts.get(signInAttempts.size() - 1).getDateOfLastAttempt();
 
             long differenceBetweenDates = (currentDate.getTime() - getFirstDate.getTime()) / 1000;
+
+            //If someone tries to sign in and he failed minimum three times then send a email to the account
+            // owner that someone is trying to get access to this account
 
             if (differenceBetweenDates < 60) {
                 return failedSignInAttempt(signInAttempt);

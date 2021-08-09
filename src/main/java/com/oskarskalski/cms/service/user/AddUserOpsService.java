@@ -21,24 +21,30 @@ public class AddUserOpsService implements Add<UserRequest> {
     }
 
     public void addByObject(UserRequest userRequest) {
-        if(userRepo.findByEmail(userRequest.getEmail()).isPresent())
+        if (userRepo.findByEmail(userRequest.getEmail()).isPresent())
             throw new InvalidDataException();
 
-        if(!userRequest.getNewPassword().equals(userRequest.getRepeatNewPassword()))
+        if (userRequest.getNewPassword() == null)
             throw new InvalidDataException();
 
-        if (userRequest.getFirstName() == null ||
-                userRequest.getFirstName().length() < 2 ||
+        if (userRequest.getFirstName() == null)
+            throw new InvalidDataException();
+
+        if (userRequest.getLastName() == null)
+            throw new InvalidDataException();
+
+        if (!userRequest.getNewPassword().equals(userRequest.getRepeatNewPassword()))
+            throw new InvalidDataException();
+
+        if (userRequest.getFirstName().length() < 2 ||
                 userRequest.getFirstName().length() > 50)
             throw new InvalidDataException();
 
-        if (userRequest.getLastName() == null ||
-                userRequest.getLastName().length() < 2 ||
+        if (userRequest.getLastName().length() < 2 ||
                 userRequest.getLastName().length() > 50)
             throw new InvalidDataException();
 
-        if (userRequest.getNewPassword() == null ||
-                userRequest.getNewPassword().length() < 10 ||
+        if (userRequest.getNewPassword().length() < 10 ||
                 userRequest.getNewPassword().length() > 128)
             throw new InvalidDataException();
 
