@@ -58,7 +58,7 @@ It will return json with data:
 /api/users/update
 
 Update data using json and send as PUT request: 
-Note: if you want update password, there are required values oldPassword, newPassword, repeatNewPassword. Additionally, user has to be signed in. 
+Note: if you want update password, there are required values oldPassword, newPassword, repeatNewPassword.
 
 ```yaml
 {
@@ -81,6 +81,8 @@ Note: if you want update password, there are required values oldPassword, newPas
 
 ### Delete
 
+Both requests require DELETE method.
+
 /api/users/delete/{id}
 
  &nbsp; Description: It's soft delete. It means that the user's data are not deleted from db but user can't sign in to his account.
@@ -101,9 +103,9 @@ Note: username is email that user gave in sign up.
 ```yaml
 {
  
-  &nbsp; "username": String(length: 5-50),
+  "username": String(length: 5-50),
   
-  &nbsp; "password": String(length: 10-128),
+  "password": String(length: 10-128),
   
 }
 ```
