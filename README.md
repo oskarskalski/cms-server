@@ -109,3 +109,67 @@ Note: username is email that user gave in sign up.
   
 }
 ```
+
+## Article
+
+### Add
+
+/api/article/add
+
+
+```yaml
+{
+
+  "title": String(length: 2-25),
+  
+  "content":  String(length: 30-2000),
+  
+  "authorName": String(length: 3-100)
+}
+```
+
+### Get
+
+/api/article/all/author/{id}
+
+ &nbsp; Description: Returns list o articles by author's id.
+
+/api/article/all/author/{name}
+
+ &nbsp; Description: Returns list o articles by author's name.
+
+/api/article/{id}
+
+ &nbsp; Returns article by article's id.
+
+/api/article/all/team/{id}
+
+ &nbsp; Description: Returns list o articles by team's id.
+
+
+### Update
+
+/api/article/update
+
+Update data using json and send request with PUT method.
+
+```yaml
+{
+
+  "title": String(length: 2-25),
+  
+  "content":  String(length: 30-2000),
+  
+  "authorName": String(length: 3-100)
+}
+```
+
+### Delete 
+
+/api/article/soft/{id}
+
+ &nbsp; Description: If article is soft deleted then it is not available for everyone.
+
+/api/article/hard/{id}
+
+ &nbsp; Description: Article is deleted from db.
