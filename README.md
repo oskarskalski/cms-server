@@ -16,7 +16,7 @@ Url: https://spring-cms-server.herokuapp.com/
 
 ### Add
 
-/api/users/add
+```/api/users/add```
 
 Required data using json and send as POST request: 
 
@@ -38,7 +38,7 @@ Required data using json and send as POST request:
 
 ### Get
 
-/api/users/{id}
+```/api/users/{id}```
 
 It will return json with data:
 
@@ -55,7 +55,7 @@ It will return json with data:
 
 ### Update
 
-/api/users/update
+```/api/users/update```
 
 Update data using json and send as PUT request: 
 Note: if you want update password, there are required values oldPassword, newPassword, repeatNewPassword.
@@ -83,19 +83,19 @@ Note: if you want update password, there are required values oldPassword, newPas
 
 Both requests require DELETE method.
 
-/api/users/delete/{id}
+```/api/users/delete/{id}```
 
  &nbsp; Description: It's soft delete. It means that the user's data are not deleted from db but user can't sign in to his account.
 
 
-/api/users/delete/{id}/hard
+```/api/users/delete/{id}/hard```
 
  &nbsp; Description: It's hard delete. It means that all of the user's data are deleted from db. 
 
 
 ### Login
 
-/login
+```/login```
 
 Required data using json and send request POST. 
 Note: username is email that user gave in sign up.
@@ -114,7 +114,7 @@ Note: username is email that user gave in sign up.
 
 ### Add
 
-/api/article/add
+```/api/article/add```
 
 
 ```yaml
@@ -130,26 +130,26 @@ Note: username is email that user gave in sign up.
 
 ### Get
 
-/api/article/all/author/{id}
+```/api/article/all/author/{id}```
 
  &nbsp; Description: Returns list o articles by author's id.
 
-/api/article/all/author/{name}
+```/api/article/all/author/{name}```
 
  &nbsp; Description: Returns list o articles by author's name.
 
-/api/article/{id}
+```/api/article/{id}```
 
  &nbsp; Returns article by article's id.
 
-/api/article/all/team/{id}
+```/api/article/all/team/{id}```
 
  &nbsp; Description: Returns list o articles by team's id.
 
 
 ### Update
 
-/api/article/update
+```/api/article/update```
 
 Update data using json and send request with PUT method.
 
@@ -166,10 +166,10 @@ Update data using json and send request with PUT method.
 
 ### Delete 
 
-/api/article/soft/{id}
+```/api/article/soft/{id}```
 
  &nbsp; Description: If article is soft deleted then it is not available for everyone.
 
-/api/article/hard/{id}
+```/api/article/hard/{id}```
 
  &nbsp; Description: Article is deleted from db.
