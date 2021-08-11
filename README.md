@@ -173,3 +173,54 @@ Update data using json and send request with PUT method.
 ```/api/article/hard/{id}```
 
  &nbsp; Description: Article is deleted from db.
+
+## Comment
+
+### Add
+
+```/api/comment/add/{articleId}```
+
+
+```yaml
+{
+
+  "content": String(length: 4-500),
+  
+  "articleId":  String()
+  
+}
+```
+
+
+### GET 
+
+```/api/comment/{id}```
+
+ &nbsp; Description: After sending GET request, user will receive json with data
+
+```yaml
+{
+  
+  "content":  String(length: 30-2000),
+  
+  "date": Date,
+  
+  "articleId": String,
+  
+  "userId": Long
+  
+}
+```
+
+
+### Delete 
+
+```/api/comment/delete/{id}```
+
+ &nbsp; Description: If comment is soft deleted then it is not available for everyone.
+
+```/api/comment/delete/hard/{id}```
+
+ &nbsp; Description: Comment is deleted from db.
+
+
