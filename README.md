@@ -3,8 +3,6 @@ The idea of this project is to learn how to build rest api and how to use spring
 
 Current status for this project is: writting tests for services.
 
-Later i am gonna make front by using html, css, js, reactjs.
-
 This server works on the heroku.
 
 Url: https://spring-cms-server.herokuapp.com/
@@ -186,7 +184,7 @@ Update data using json and send request with PUT method.
 
   "content": String(length: 4-500),
   
-  "articleId":  String()
+  "articleId":  String
   
 }
 ```
@@ -224,3 +222,43 @@ Update data using json and send request with PUT method.
  &nbsp; Description: Comment is deleted from db.
 
 
+
+## Team
+
+
+### Add
+
+
+```/api/team/add```
+
+ &nbsp; Description: Send POST request with json
+
+```yaml
+{
+  
+  "name":  String(length: 3-30),
+  
+  "description": String(length: 5 - 50)
+  
+}
+```
+
+
+### GET
+
+
+```/api/team/{id}```
+
+ &nbsp; Description: Send GET request and returns json object with data
+
+```yaml
+{
+  
+  "name":  String(length: 3-30),
+  
+  "description": String(length: 5 - 50),
+  
+  "teamMembers": TeamMember  
+ 
+}
+```
