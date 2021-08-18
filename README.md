@@ -261,4 +261,75 @@ Update data using json and send request with PUT method.
   "teamMembers": TeamMember  
  
 }
+``````
+
+
+### UPDATE
+
+
+```/api/team/update/code/{id}```
+
+ &nbsp; Description: Update team code that helps user to join there.
+
+
+```/api/team/update/{id}```
+
+ &nbsp; Description: Send PUT request with json object to update team
+ 
+ 
+```yaml
+{
+  
+  "name":  String(length: 3-30),
+  
+  "description": String(length: 5 - 50)
+  
+}
 ```
+
+
+### DELETE
+
+
+```/api/team/delete/{id}```
+ &nbsp; Description: Send DELETE request to soft delete team with id
+
+
+```/api/team/delete/{id}/hard```
+
+ &nbsp; Description: Send DELETE request to hard delete team with id
+ 
+ 
+ ## TeamMember
+ 
+ ### ADD
+ 
+ ```/api/teamMember/add```
+ 
+ &nbsp; Description: Send POST request with json object
+
+```yaml
+{
+  
+  "teamId":  String,
+  
+  "roleId": Long,
+  
+  "userId": Long
+  
+}
+
+
+``` 
+ ### DELETE
+ 
+ ```/api/teamMember/delete/{id}```
+ 
+ &nbsp; Description: Send DELETE request to soft delete team with id
+
+ 
+ ```/api/teamMember/delete/{id}/hard```
+ 
+ &nbsp; Description: Send DELETE request to hard delete team with id
+
+
