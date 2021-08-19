@@ -14,7 +14,7 @@ public class DeleteTeamMemberController {
         this.deleteTeamMemberService = deleteTeamMemberService;
     }
 
-    @DeleteMapping("{teamId}")
+    @DeleteMapping("delete/{teamId}")
     public void softDelete(
             @PathVariable String teamId,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
@@ -22,7 +22,7 @@ public class DeleteTeamMemberController {
         deleteTeamMemberService.softDeleteByIdAndAuthorizationHeader(teamId, header);
     }
 
-    @DeleteMapping("hard/{teamId}")
+    @DeleteMapping("delete/{teamId}/hard")
     public void hardDelete(
             @PathVariable String teamId,
             @RequestHeader(value = "Authorization", defaultValue = "") String header) {
@@ -30,7 +30,7 @@ public class DeleteTeamMemberController {
         deleteTeamMemberService.hardDeleteByIdAndAuthorizationHeader(teamId, header);
     }
 
-    @DeleteMapping("{teamId}/{userId}")
+    @DeleteMapping("delete/{teamId}/{userId}")
     public void deleteByTeamCreator(
             @PathVariable("teamId") String teamId,
             @PathVariable("userId") long userId,
