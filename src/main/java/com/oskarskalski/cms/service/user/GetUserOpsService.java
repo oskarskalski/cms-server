@@ -55,7 +55,7 @@ public class GetUserOpsService implements Get<UserDto, Long> {
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         try {
-            ResponseEntity<List> articles = restTemplate.exchange("http://localhost:8080/api/article/all/author/" + id, HttpMethod.GET, entity, List.class);
+            ResponseEntity<List> articles = restTemplate.exchange(System.getenv("SITE_URL") + "/api/article/all/author/" + id, HttpMethod.GET, entity, List.class);
             if (articles.getStatusCodeValue() == 200)
                 map.put("articles", articles.getBody());
         } catch (HttpClientErrorException e) {
@@ -63,7 +63,7 @@ public class GetUserOpsService implements Get<UserDto, Long> {
         }
 
         try {
-            ResponseEntity<List> teams = restTemplate.exchange("http://localhost:8080/api/teamMember/" + id, HttpMethod.GET, entity, List.class);
+            ResponseEntity<List> teams = restTemplate.exchange(System.getenv("SITE_URL") + "/api/teamMember/" + id, HttpMethod.GET, entity, List.class);
             if (teams.getStatusCodeValue() == 200)
                 map.put("teams", teams.getBody());
         } catch (HttpClientErrorException e) {
@@ -71,7 +71,7 @@ public class GetUserOpsService implements Get<UserDto, Long> {
         }
 
         try {
-            ResponseEntity<Map> followStatistics = restTemplate.exchange("http://localhost:8080/api/follow/statistics/" + id, HttpMethod.GET, entity, Map.class);
+            ResponseEntity<Map> followStatistics = restTemplate.exchange(System.getenv("SITE_URL") + "/api/follow/statistics/" + id, HttpMethod.GET, entity, Map.class);
             if (followStatistics.getStatusCodeValue() == 200)
                 map.put("followStatistics", followStatistics.getBody());
         } catch (HttpClientErrorException e) {
