@@ -44,7 +44,7 @@ public class UpdateTeamControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -60,8 +60,9 @@ public class UpdateTeamControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
         team.setName(TEST_TEAM_NAME + Math.floor(Math.random() * 10));
+        team.setId(TEST_TEAM_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -76,8 +77,9 @@ public class UpdateTeamControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
         team.setDescription(TEST_TEAM_DESCRIPTION + Math.floor(Math.random() * 10));
+        team.setId(TEST_TEAM_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -94,8 +96,9 @@ public class UpdateTeamControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
         team.setName(TEST_TEAM_NAME.substring(0, 2));
+        team.setId(TEST_TEAM_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -110,10 +113,11 @@ public class UpdateTeamControllerTests {
     public void givenIsTeamWithTooLongName__ExceptedHttpStatus__Returned400Status() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
+        team.setId(TEST_TEAM_ID);
         team.setName(TEST_TEAM_NAME + TEST_TEAM_NAME + TEST_TEAM_NAME + TEST_TEAM_NAME + TEST_TEAM_NAME + TEST_TEAM_NAME + TEST_TEAM_NAME);
 
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -129,8 +133,9 @@ public class UpdateTeamControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
         team.setDescription(TEST_TEAM_DESCRIPTION.substring(0, 2));
+        team.setId(TEST_TEAM_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))
@@ -146,8 +151,9 @@ public class UpdateTeamControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamDto team = new TeamDto();
         team.setDescription(TEST_TEAM_DESCRIPTION + TEST_TEAM_DESCRIPTION);
+        team.setId(TEST_TEAM_ID);
         String jsonWithNullValues = objectMapper.writeValueAsString(team);
-        MvcResult mvcResult = mvc.perform(put("/api/team/update/" + TEST_TEAM_ID)
+        MvcResult mvcResult = mvc.perform(put("/api/team/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", TEST_JWT)
                 .content(jsonWithNullValues))

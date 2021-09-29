@@ -7,11 +7,11 @@ public class TestData {
     public static final String TEST_LAST_NAME = "testLastName" + new Date();
     public static final String TEST_EMAIL = "test@email.email" + new Date();
     public static final String TEST_PASSWORD = "testPassword";
-    public static final long TEST_ID = 7;
+    public static final long TEST_ID = 10;
 
-    public static final String TEST_JWT = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsImlkIjoiNyIsImF1dGhvcml0aWVzIjoiW10ifQ.UE6ZGmNTnyKcuOAjdRkZAfaHu9TTzT1Mx2OlRjvDoXc";
+    public static final String TEST_JWT = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsImlkIjoiMTAiLCJhdXRob3JpdGllcyI6IltdIn0.LoeIUKp5j3MBAHgnCYPjoapJjTnyG6cvgCRKJX1PQvA";
 
-    public static final String TEST_TEAM_ID = "2969f66d-a5b7-4da9-9c76-90818eba294e";
+    public static final String TEST_TEAM_ID = "0c4b6fd7-d528-4189-9d2d-465ea64a7166";
     public static final String TEST_TEAM_NAME = "testTeamName";
     public static final String TEST_TEAM_DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             .substring(0, 90);

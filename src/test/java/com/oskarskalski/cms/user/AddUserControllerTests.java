@@ -31,7 +31,6 @@ public class AddUserControllerTests {
         UserRequest user = new UserRequest();
         user.setFirstName(TEST_FIRST_NAME);
         user.setLastName(TEST_LAST_NAME);
-        System.out.println(TEST_EMAIL);
         user.setEmail(TEST_EMAIL);
         user.setNewPassword(TEST_PASSWORD);
         user.setRepeatNewPassword(TEST_PASSWORD);

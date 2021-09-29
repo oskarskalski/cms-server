@@ -3,10 +3,10 @@ package com.oskarskalski.cms.controller.user;
 import com.oskarskalski.cms.dto.UserDto;
 import com.oskarskalski.cms.service.user.GetUserOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users/")
@@ -26,5 +26,10 @@ public class GetUserController {
     @GetMapping("fullName/{id}")
     public String getUserFullNameById(@PathVariable long id){
         return getUserService.getFullNameById(id);
+    }
+
+    @GetMapping("profile/{id}")
+    public Map<String, Object> getUserProfile(@RequestHeader("Authorization")String header, @PathVariable Optional<Long> id){
+        return getUserService.getInformationAboutUserByHeaderAndId(header, id);
     }
 }

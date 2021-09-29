@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface GetArticle extends Get<ArticleDto, String> {
     List<ArticleDto> getAllArticlesByAuthorId(long id);
-    List<ArticleDto> getArticlesByTeamId(String id);
+    List<ArticleDto> getAllArticlesByTeamId(String id);
 }

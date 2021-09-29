@@ -1,6 +1,7 @@
 package com.oskarskalski.cms.service.article;
 
-import com.oskarskalski.cms.crud.operation.Get;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oskarskalski.cms.crud.operation.GetArticle;
 import com.oskarskalski.cms.dto.ArticleDto;
 import com.oskarskalski.cms.exception.NotFoundException;
@@ -8,11 +9,11 @@ import com.oskarskalski.cms.model.Article;
 import com.oskarskalski.cms.model.Comment;
 import com.oskarskalski.cms.repo.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class GetArticleOpsService implements GetArticle {
@@ -37,29 +38,54 @@ public class GetArticleOpsService implements GetArticle {
 
 
     public List<ArticleDto> getAllArticlesByAuthorId(long authorId) {
-        List<Article> articles = articleRepo.findAllByAuthorId(authorId)
+        List<Article> articles = articleRepo.findAllByAuthorIdOrderByDate(authorId)
                 .orElseThrow(NullPointerException::new);
 
-        List<ArticleDto> articlesDto = getArticlesDto(articles);
+        List<ArticleDto> articlesDto = getArticlesDto(articles, 50);
 
         return articlesDto;
     }
 
-    public List<ArticleDto> getArticlesByTeamId(String teamId) {
+    public List<ArticleDto> getAllArticlesByTeamId(String teamId) {
         List<Article> articles = articleRepo.findAllByTeamId(teamId)
                 .orElseThrow(NullPointerException::new);
 
-        List<ArticleDto> articlesDto = getArticlesDto(articles);
+        List<ArticleDto> articlesDto = getArticlesDto(articles, 50);
 
         return articlesDto;
     }
 
-    private List<ArticleDto> getArticlesDto(List<Article> articles) {
+    public List<ArticleDto> getAllArticlesBy(String header) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", header);
+        HttpEntity<String> entity = new HttpEntity<>("body", headers);
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/api/follow/secure", HttpMethod.GET, entity, String.class);
+
+        List<Article> articles = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Map> list = objectMapper.readValue(response.getBody(), List.class);
+
+            for(Map map: list){
+                List<Article> getArticles = articleRepo.findAllByAuthorIdOrderByDate(Long.parseLong(map.get("followingId").toString())).get();
+                articles.addAll(getArticles);
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return getArticlesDto(articles, 50);
+    }
+
+    private List<ArticleDto> getArticlesDto(List<Article> articles, int contentLength) {
         List<ArticleDto> articlesDto = new ArrayList<>();
 
         for (Article article : articles) {
             if (!article.isSoftDelete()) {
-                articlesDto.add(mapToArticleDto(article));
+                ArticleDto articleDto = mapToArticleDto(article);
+                articleDto.setContent(articleDto.getContent().substring(0, contentLength));
+                articlesDto.add(articleDto);
             }
         }
 
@@ -70,9 +96,9 @@ public class GetArticleOpsService implements GetArticle {
     }
 
     private ArticleDto mapToArticleDto(Article article) {
-        if(article.isSoftDelete())
+        if (article.isSoftDelete())
             throw new NotFoundException();
-        
+
         if (article.getComments().size() != 0 && article.getComments() != null) {
             for (int i = 0; i < article.getComments().size(); i++) {
                 Comment comment = article.getComments().get(i);
@@ -88,6 +114,7 @@ public class GetArticleOpsService implements GetArticle {
         RestTemplate restTemplate = new RestTemplate();
         String fullNameAuthor = restTemplate.getForObject(uri, String.class);
 
+        articleDto.setId(article.getId());
         articleDto.setTitle(article.getTitle());
         articleDto.setAuthorName(fullNameAuthor);
         articleDto.setContent(article.getContent());

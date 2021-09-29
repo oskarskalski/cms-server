@@ -101,13 +101,13 @@ public class UpdateUserControllerTests {
         user.setEmail(email);
         String jsonWithNullValues = objectMapper.writeValueAsString(user);
         MvcResult updateUser = mvc.perform(put("/api/users/update")
-                .header("Authorization", "Bearer " + TEST_JWT)
+                .header("Authorization", TEST_JWT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonWithNullValues))
                 .andReturn();
 
         MvcResult getUser = mvc.perform(get("/api/users/" + TEST_ID)
-                .header("Authorization", "Bearer " + TEST_JWT)
+                .header("Authorization", TEST_JWT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonWithNullValues))
                 .andReturn();

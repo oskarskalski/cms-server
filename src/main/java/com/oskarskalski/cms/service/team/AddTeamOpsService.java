@@ -72,8 +72,10 @@ public class AddTeamOpsService implements SecuredAdd<TeamDto> {
 
         HttpEntity<TeamMember> request =
                 new HttpEntity<>(teamMember, headers);
+
+        String currentSiteName = System.getenv("SITE_URL");
         ResponseEntity<String> response =
                 restTemplate.
-                        postForEntity("http://localhost:8080/api/teamMember/add", request, String.class);
+                        postForEntity(currentSiteName + "/api/teamMember/add", request, String.class);
     }
 }

@@ -37,7 +37,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
-
         try {
             UsernameAndPasswordAuthenticationRequest authenticationRequest = new ObjectMapper()
                     .readValue(request.getInputStream(), UsernameAndPasswordAuthenticationRequest.class);
@@ -45,21 +44,21 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             User user = userAuthenticationService
                     .findUserByEmail(authenticationRequest.getUsername());
 
-            if(user != null){
-                if(!user.isSoftDelete()) {
+            if (user != null) {
+                if (!user.isSoftDelete()) {
                     Authentication authentication = new UsernamePasswordAuthenticationToken(
                             user.getId(),
                             authenticationRequest.getPassword()
                     );
 
-                    if(!attemptSignInService.attemptSignIn(user, authenticationRequest.getPassword()))
+                    if (!attemptSignInService.attemptSignIn(user, authenticationRequest.getPassword()))
                         throw new AccessDeniedException();
 
                     Authentication authenticate = authenticationManager.authenticate(authentication);
                     return authenticate;
-                }else
+                } else
                     throw new AccessDeniedException();
-            }else{
+            } else {
                 throw new AccessDeniedException();
             }
         } catch (IOException e) {
