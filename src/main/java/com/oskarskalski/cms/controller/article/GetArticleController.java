@@ -32,8 +32,8 @@ public class GetArticleController {
     public List<ArticleDto> getArticlesByTeamId(@PathVariable String teamId){
         return getArticleService.getAllArticlesByTeamId(teamId);
     }
-    @GetMapping("/test")
-    public List<ArticleDto> test(@RequestHeader("Authorization")String header){
+    @GetMapping("/all")
+    public List<ArticleDto> getArticlesByHeader(@RequestHeader("Authorization")String header){
         return getArticleService.getAllArticlesBy(header);
     }
 }

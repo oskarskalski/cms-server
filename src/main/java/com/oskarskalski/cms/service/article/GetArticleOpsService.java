@@ -60,21 +60,19 @@ public class GetArticleOpsService implements GetArticle {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", header);
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/api/follow/secure", HttpMethod.GET, entity, String.class);
-
         List<Article> articles = new ArrayList<>();
         try {
+            ResponseEntity<String> response = restTemplate.exchange(System.getenv("SITE_URL") + "/api/follow/secure", HttpMethod.GET, entity, String.class);
             ObjectMapper objectMapper = new ObjectMapper();
             List<Map> list = objectMapper.readValue(response.getBody(), List.class);
 
             for(Map map: list){
-                List<Article> getArticles = articleRepo.findAllByAuthorIdOrderByDate(Long.parseLong(map.get("followingId").toString())).get();
+                List<Article> getArticles = articleRepo.findAllByAuthorIdOrderByDate(Long.parseLong(map.get("followingId").toString())).orElseThrow(NotFoundException::new);
                 articles.addAll(getArticles);
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
         return getArticlesDto(articles, 50);
     }
 
@@ -109,7 +107,7 @@ public class GetArticleOpsService implements GetArticle {
         }
         ArticleDto articleDto = new ArticleDto();
 
-        final String uri = "http://localhost:8080/api/users/fullName/" + article.getAuthorId();
+        final String uri = System.getenv("SITE_URL") + "/api/users/fullName/" + article.getAuthorId();
 
         RestTemplate restTemplate = new RestTemplate();
         String fullNameAuthor = restTemplate.getForObject(uri, String.class);
@@ -123,7 +121,6 @@ public class GetArticleOpsService implements GetArticle {
 
         if (article.getNamesOfImages() != null) {
             articleDto.setImages(article.getNamesOfImages().split(" "));
-
         }
 
         return articleDto;
