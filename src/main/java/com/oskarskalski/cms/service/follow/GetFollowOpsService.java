@@ -38,7 +38,7 @@ public class GetFollowOpsService {
                 .orElseThrow(NotFoundException::new);
     }
 
-    public Map<String, Integer> getStatistics(long id){
+    public Map<String, Integer> getStatisticsByUserId(long id){
         int follows = getAllObjectsByUserId(id).size();
         int followings = getAllObjectsByFollowingId(id).size();
         Map<String, Integer> map = new HashMap<>();

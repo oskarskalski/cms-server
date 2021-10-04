@@ -1,19 +1,24 @@
 package com.oskarskalski.cms.service.user;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oskarskalski.cms.configuration.JwtConfiguration;
 import com.oskarskalski.cms.crud.operation.Get;
+import com.oskarskalski.cms.dto.ArticleDto;
+import com.oskarskalski.cms.dto.TeamMemberDto;
 import com.oskarskalski.cms.dto.UserDto;
 import com.oskarskalski.cms.model.User;
 import com.oskarskalski.cms.repo.UserRepo;
+import com.oskarskalski.cms.service.article.GetArticleOpsService;
+import com.oskarskalski.cms.service.follow.GetFollowOpsService;
+import com.oskarskalski.cms.service.teammember.GetTeamMemberOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
@@ -21,9 +26,19 @@ import java.util.*;
 public class GetUserOpsService implements Get<UserDto, Long> {
     private final UserRepo userRepo;
 
+    private final GetFollowOpsService getFollowOpsService;
+    private final GetTeamMemberOpsService getTeamMemberOpsService;
+    private final GetArticleOpsService getArticleOpsService;
+
     @Autowired
-    public GetUserOpsService(UserRepo userRepo) {
+    public GetUserOpsService(UserRepo userRepo,
+                             @Lazy GetFollowOpsService getFollowOpsService,
+                             @Lazy GetTeamMemberOpsService getTeamMemberOpsService,
+                             @Lazy GetArticleOpsService getArticleOpsService) {
         this.userRepo = userRepo;
+        this.getFollowOpsService = getFollowOpsService;
+        this.getTeamMemberOpsService = getTeamMemberOpsService;
+        this.getArticleOpsService = getArticleOpsService;
     }
 
     public UserDto getById(Long id) {
@@ -49,34 +64,14 @@ public class GetUserOpsService implements Get<UserDto, Long> {
             id = userId.get();
         }
 
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", header);
-        HttpEntity<String> entity = new HttpEntity<>("body", headers);
+        List<ArticleDto> articles = getArticleOpsService.getAllArticlesByAuthorId(id);
+        List<TeamMemberDto> teams = getTeamMemberOpsService.getTeamsByUserId(id);
+        Map<String, Integer> followStatistics  = getFollowOpsService.getStatisticsByUserId(id);
 
-        try {
-            ResponseEntity<List> articles = restTemplate.exchange(System.getenv("SITE_URL") + "/api/article/all/author/" + id, HttpMethod.GET, entity, List.class);
-            if (articles.getStatusCodeValue() == 200)
-                map.put("articles", articles.getBody());
-        } catch (HttpClientErrorException e) {
-            System.out.println("Not found");
-        }
+        map.put("articles", articles);
+        map.put("teams", teams);
+        map.put("followStatistics", followStatistics);
 
-        try {
-            ResponseEntity<List> teams = restTemplate.exchange(System.getenv("SITE_URL") + "/api/teamMember/" + id, HttpMethod.GET, entity, List.class);
-            if (teams.getStatusCodeValue() == 200)
-                map.put("teams", teams.getBody());
-        } catch (HttpClientErrorException e) {
-            System.out.println("Not found");
-        }
-
-        try {
-            ResponseEntity<Map> followStatistics = restTemplate.exchange(System.getenv("SITE_URL") + "/api/follow/statistics/" + id, HttpMethod.GET, entity, Map.class);
-            if (followStatistics.getStatusCodeValue() == 200)
-                map.put("followStatistics", followStatistics.getBody());
-        } catch (HttpClientErrorException e) {
-            System.out.println("Not found");
-        }
         UserDto userDto = getById(id);
         map.put("userInformation", userDto);
 

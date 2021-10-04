@@ -34,6 +34,6 @@ public class GetFollowController {
 
     @GetMapping("statistics/{id}")
     public Map<String, Integer> getStatistics(@PathVariable long id){
-        return getFollowOpsService.getStatistics(id);
+        return getFollowOpsService.getStatisticsByUserId(id);
     }
 }
