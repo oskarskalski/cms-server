@@ -1,7 +1,7 @@
 # CMS Server
 The idea of this project is to learn how to build rest api and how to use spring boot. The technologies that i am using for this project are: java, spring boot, junit, mysql. 
 
-Current status for this project is: writting tests for services.
+Current status for this project is: writting tests for services and writting new feautures.
 
 This server works on the heroku.
 
