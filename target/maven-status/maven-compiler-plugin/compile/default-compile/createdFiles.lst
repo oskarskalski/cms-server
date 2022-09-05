@@ -5,6 +5,7 @@ com\oskarskalski\cms\controller\team\DeleteTeamController.class
 com\oskarskalski\cms\service\article\GetArticleOpsService.class
 com\oskarskalski\cms\crud\operation\Add.class
 com\oskarskalski\cms\controller\team\AddTeamController.class
+com\oskarskalski\cms\controller\follow\AddFollowController.class
 com\oskarskalski\cms\model\User.class
 com\oskarskalski\cms\service\user\DeleteUserOpsService.class
 com\oskarskalski\cms\features\TeamCreator.class
@@ -17,11 +18,13 @@ com\oskarskalski\cms\repo\TeamMemberRepo.class
 com\oskarskalski\cms\controller\team\UpdateTeamController.class
 com\oskarskalski\cms\model\SignInAttempt.class
 com\oskarskalski\cms\configuration\DataSourceConfig.class
+com\oskarskalski\cms\repo\FollowRepo.class
 com\oskarskalski\cms\dto\UserDto.class
 com\oskarskalski\cms\dto\CommentDto.class
 com\oskarskalski\cms\filters\AuthorizationFilter.class
 com\oskarskalski\cms\dto\CodeDto.class
 com\oskarskalski\cms\exception\AccessDeniedException.class
+com\oskarskalski\cms\service\follow\GetFollowOpsService.class
 com\oskarskalski\cms\controller\comment\GetCommentController.class
 com\oskarskalski\cms\controller\comment\DeleteCommentController.class
 com\oskarskalski\cms\controller\comment\AddCommentController.class
@@ -34,8 +37,10 @@ com\oskarskalski\cms\exception\NotFoundException.class
 com\oskarskalski\cms\controller\user\DeleteUserController.class
 com\oskarskalski\cms\crud\operation\Get.class
 com\oskarskalski\cms\repo\TeamRoleRepo.class
+com\oskarskalski\cms\controller\teammember\GetTeamMemberController.class
 com\oskarskalski\cms\repo\SignInAttemptRepo.class
 com\oskarskalski\cms\service\teammember\DeleteTeamMemberOpsService.class
+com\oskarskalski\cms\service\teammember\GetTeamMemberOpsService.class
 com\oskarskalski\cms\model\UsernameAndPasswordAuthenticationRequest.class
 com\oskarskalski\cms\service\teammember\AddTeamMemberOpsService.class
 com\oskarskalski\cms\configuration\JwtConfiguration.class
@@ -44,6 +49,7 @@ com\oskarskalski\cms\service\article\AddArticleOpsService.class
 com\oskarskalski\cms\service\comment\AddCommentOpsService.class
 com\oskarskalski\cms\repo\CommentRepo.class
 com\oskarskalski\cms\controller\article\DeleteArticleController.class
+com\oskarskalski\cms\dto\TeamMemberDto.class
 com\oskarskalski\cms\service\UserAuthenticationService.class
 com\oskarskalski\cms\crud\operation\SecuredAdd.class
 com\oskarskalski\cms\model\TeamMember.class
@@ -52,6 +58,7 @@ com\oskarskalski\cms\dto\TeamDto.class
 com\oskarskalski\cms\repo\TeamRepo.class
 com\oskarskalski\cms\service\comment\DeleteCommentOpsService.class
 com\oskarskalski\cms\service\article\DeleteArticleOpsService.class
+com\oskarskalski\cms\controller\follow\GetFollowController.class
 com\oskarskalski\cms\crud\operation\SecuredUpdate.class
 com\oskarskalski\cms\service\team\GetTeamOpsService.class
 com\oskarskalski\cms\security\PasswordConfiguration.class
@@ -63,6 +70,8 @@ com\oskarskalski\cms\service\user\UpdateUserOpsService.class
 com\oskarskalski\cms\dto\UserRequest.class
 com\oskarskalski\cms\model\Comment.class
 com\oskarskalski\cms\model\TeamRole.class
+com\oskarskalski\cms\service\follow\AddFollowOpsService.class
+com\oskarskalski\cms\model\Follow.class
 com\oskarskalski\cms\service\user\AddUserOpsService.class
 com\oskarskalski\cms\repo\UserRepo.class
 com\oskarskalski\cms\exception\InvalidDataException.class

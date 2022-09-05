@@ -1,10 +1,10 @@
 package com.oskarskalski.cms.features;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.oskarskalski.cms.exception.AccessDeniedException;
-import com.oskarskalski.cms.configuration.JwtConfiguration;
-import com.oskarskalski.cms.model.Team;
-import com.oskarskalski.cms.model.TeamMember;
+import com.oskarskalski.cms.global.exception.AccessDeniedException;
+import com.oskarskalski.cms.global.configuration.JwtConfiguration;
+import com.oskarskalski.cms.content.team.model.Team;
+import com.oskarskalski.cms.content.member.model.TeamMember;
 
 public class TeamCreator {
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
