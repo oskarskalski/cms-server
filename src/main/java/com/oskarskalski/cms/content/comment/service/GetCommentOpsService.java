@@ -1,6 +1,5 @@
 package com.oskarskalski.cms.content.comment.service;
 
-import com.oskarskalski.cms.crud.operation.Get;
 import com.oskarskalski.cms.content.comment.model.dto.CommentDto;
 import com.oskarskalski.cms.global.exception.NotFoundException;
 import com.oskarskalski.cms.content.comment.model.Comment;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetCommentOpsService implements Get<CommentDto, Long> {
+public class GetCommentOpsService{
     private final CommentRepo commentRepo;
 
     @Autowired

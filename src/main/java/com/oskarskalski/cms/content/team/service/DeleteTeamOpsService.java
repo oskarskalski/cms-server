@@ -1,6 +1,5 @@
 package com.oskarskalski.cms.content.team.service;
 
-import com.oskarskalski.cms.crud.operation.SecuredDelete;
 import com.oskarskalski.cms.global.exception.AccessDeniedException;
 import com.oskarskalski.cms.global.exception.NotFoundException;
 import com.oskarskalski.cms.features.TeamCreator;
@@ -10,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteTeamOpsService implements SecuredDelete<String> {
+public class DeleteTeamOpsService {
     private final TeamRepo teamRepo;
     private final TeamCreator teamCreator = new TeamCreator();
 

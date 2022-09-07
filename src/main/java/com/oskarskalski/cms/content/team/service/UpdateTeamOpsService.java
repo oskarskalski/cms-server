@@ -1,6 +1,5 @@
 package com.oskarskalski.cms.content.team.service;
 
-import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.content.team.model.dto.TeamDto;
 import com.oskarskalski.cms.global.exception.AccessDeniedException;
 import com.oskarskalski.cms.global.exception.InvalidDataException;
@@ -14,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateTeamOpsService implements SecuredUpdate<TeamDto> {
+public class UpdateTeamOpsService {
     private final TeamRepo teamRepo;
     private final TeamCreator teamCreator = new TeamCreator();
 

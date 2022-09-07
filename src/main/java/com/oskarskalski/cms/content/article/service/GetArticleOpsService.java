@@ -2,13 +2,11 @@ package com.oskarskalski.cms.content.article.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oskarskalski.cms.crud.operation.GetArticle;
 import com.oskarskalski.cms.content.article.model.dto.ArticleDto;
 import com.oskarskalski.cms.global.exception.NotFoundException;
 import com.oskarskalski.cms.content.article.model.Article;
 import com.oskarskalski.cms.content.comment.model.Comment;
 import com.oskarskalski.cms.content.article.repo.ArticleRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,10 +14,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 
 @Service
-public class GetArticleOpsService implements GetArticle {
+public class GetArticleOpsService  {
     private final ArticleRepo articleRepo;
 
-    @Autowired
     public GetArticleOpsService(ArticleRepo articleRepo) {
         this.articleRepo = articleRepo;
     }

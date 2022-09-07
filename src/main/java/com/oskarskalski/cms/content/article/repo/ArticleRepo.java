@@ -14,10 +14,4 @@ public interface ArticleRepo extends JpaRepository<Article, String> {
     Optional<List<Article>> findAllByAuthorIdOrderByDate(long id);
     Optional<Article> findByIdAndAuthorId(String id, long authorId);
     Optional<List<Article>> findAllByTeamId(String id);
-
-    @Repository
-    interface FollowRepo extends JpaRepository<Follow, Long> {
-        Optional<List<Follow>> findAllByUserId(long userId);
-        Optional<List<Follow>> findAllByFollowingId(long userId);
-    }
 }

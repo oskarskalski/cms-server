@@ -1,7 +1,6 @@
 package com.oskarskalski.cms.content.member.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.oskarskalski.cms.crud.operation.SecuredDelete;
 import com.oskarskalski.cms.global.exception.AccessDeniedException;
 import com.oskarskalski.cms.global.exception.NotFoundException;
 import com.oskarskalski.cms.global.configuration.JwtConfiguration;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteTeamMemberOpsService implements SecuredDelete<String> {
+public class DeleteTeamMemberOpsService {
     private final TeamMemberRepo teamMemberRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 

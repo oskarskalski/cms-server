@@ -1,7 +1,6 @@
 package com.oskarskalski.cms.content.article.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.content.article.model.dto.ArticleDto;
 import com.oskarskalski.cms.global.exception.AccessDeniedException;
 import com.oskarskalski.cms.global.exception.InvalidDataException;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateArticleOpsService implements SecuredUpdate<ArticleDto> {
+public class UpdateArticleOpsService{
     private final ArticleRepo articleRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 

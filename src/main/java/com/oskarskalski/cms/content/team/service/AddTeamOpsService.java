@@ -1,7 +1,6 @@
 package com.oskarskalski.cms.content.team.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.oskarskalski.cms.crud.operation.SecuredAdd;
 import com.oskarskalski.cms.content.team.model.dto.TeamDto;
 import com.oskarskalski.cms.global.exception.AccessDeniedException;
 import com.oskarskalski.cms.global.exception.InvalidDataException;
@@ -22,7 +21,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @Service
-public class AddTeamOpsService implements SecuredAdd<TeamDto> {
+public class AddTeamOpsService {
     private final TeamRepo teamRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 

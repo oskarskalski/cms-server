@@ -1,7 +1,5 @@
 package com.oskarskalski.cms.content.member.service;
 
-import com.oskarskalski.cms.crud.operation.Add;
-import com.oskarskalski.cms.crud.operation.SecuredAdd;
 import com.oskarskalski.cms.content.team.model.dto.CodeDto;
 import com.oskarskalski.cms.global.configuration.JwtConfiguration;
 import com.oskarskalski.cms.content.member.model.TeamMember;
@@ -12,11 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class AddTeamMemberOpsService implements Add<TeamMember>, SecuredAdd<CodeDto> {
+public class AddTeamMemberOpsService{
     private final TeamMemberRepo teamMemberRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
-    @Autowired
     public AddTeamMemberOpsService(TeamMemberRepo teamMemberRepo) {
         this.teamMemberRepo = teamMemberRepo;
     }

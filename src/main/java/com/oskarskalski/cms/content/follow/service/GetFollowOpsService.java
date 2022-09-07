@@ -2,6 +2,7 @@ package com.oskarskalski.cms.content.follow.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.content.article.repo.ArticleRepo;
+import com.oskarskalski.cms.content.follow.repo.FollowRepo;
 import com.oskarskalski.cms.global.configuration.JwtConfiguration;
 import com.oskarskalski.cms.global.exception.NotFoundException;
 import com.oskarskalski.cms.content.follow.model.Follow;
@@ -14,11 +15,11 @@ import java.util.Map;
 
 @Service
 public class GetFollowOpsService {
-    private final ArticleRepo.FollowRepo followRepo;
+    private final FollowRepo followRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
     @Autowired
-    public GetFollowOpsService(ArticleRepo.FollowRepo followRepo) {
+    public GetFollowOpsService(FollowRepo followRepo) {
         this.followRepo = followRepo;
     }
 

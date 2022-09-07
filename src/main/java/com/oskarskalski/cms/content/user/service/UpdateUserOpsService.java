@@ -1,7 +1,6 @@
 package com.oskarskalski.cms.content.user.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.oskarskalski.cms.crud.operation.SecuredUpdate;
 import com.oskarskalski.cms.global.model.dto.UserRequest;
 import com.oskarskalski.cms.global.exception.InvalidDataException;
 import com.oskarskalski.cms.global.exception.NotFoundException;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateUserOpsService implements SecuredUpdate<UserRequest> {
+public class UpdateUserOpsService {
     private final UserRepo userRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 

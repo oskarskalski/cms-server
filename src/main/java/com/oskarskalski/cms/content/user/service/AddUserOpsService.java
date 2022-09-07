@@ -1,6 +1,5 @@
 package com.oskarskalski.cms.content.user.service;
 
-import com.oskarskalski.cms.crud.operation.Add;
 import com.oskarskalski.cms.global.model.dto.UserRequest;
 import com.oskarskalski.cms.global.exception.InvalidDataException;
 import com.oskarskalski.cms.content.user.model.User;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class AddUserOpsService implements Add<UserRequest> {
+public class AddUserOpsService {
     private UserRepo userRepo;
 
     @Autowired

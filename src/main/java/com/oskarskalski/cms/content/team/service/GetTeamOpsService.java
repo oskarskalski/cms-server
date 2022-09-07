@@ -1,6 +1,5 @@
 package com.oskarskalski.cms.content.team.service;
 
-import com.oskarskalski.cms.crud.operation.Get;
 import com.oskarskalski.cms.content.team.model.dto.TeamDto;
 import com.oskarskalski.cms.global.exception.AccessDeniedException;
 import com.oskarskalski.cms.global.exception.NotFoundException;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetTeamOpsService implements Get<TeamDto, String> {
+public class GetTeamOpsService {
     private final TeamRepo teamRepo;
 
     @Autowired

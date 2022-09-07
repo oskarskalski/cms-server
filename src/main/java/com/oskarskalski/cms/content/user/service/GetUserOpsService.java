@@ -2,7 +2,6 @@ package com.oskarskalski.cms.content.user.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.oskarskalski.cms.global.configuration.JwtConfiguration;
-import com.oskarskalski.cms.crud.operation.Get;
 import com.oskarskalski.cms.content.article.model.dto.ArticleDto;
 import com.oskarskalski.cms.content.member.model.dto.TeamMemberDto;
 import com.oskarskalski.cms.content.user.model.dto.UserDto;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class GetUserOpsService implements Get<UserDto, Long> {
+public class GetUserOpsService {
     private final UserRepo userRepo;
 
     private final GetFollowOpsService getFollowOpsService;

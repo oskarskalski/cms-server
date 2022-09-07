@@ -1,7 +1,6 @@
 package com.oskarskalski.cms.content.comment.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.oskarskalski.cms.crud.operation.SecuredAdd;
 import com.oskarskalski.cms.content.comment.model.dto.CommentDto;
 import com.oskarskalski.cms.global.configuration.JwtConfiguration;
 import com.oskarskalski.cms.content.comment.model.Comment;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class AddCommentOpsService implements SecuredAdd<CommentDto> {
+public class AddCommentOpsService {
     private final CommentRepo commentRepo;
     private final JwtConfiguration jwtConfiguration = new JwtConfiguration();
 
