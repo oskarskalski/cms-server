@@ -1,10 +1,18 @@
 package com.oskarskalski.cms.content.article.model.dto;
 
 import com.oskarskalski.cms.content.comment.model.Comment;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleDto {
     private String id;
     private String title;
